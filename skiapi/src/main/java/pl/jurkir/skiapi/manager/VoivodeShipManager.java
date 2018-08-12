@@ -1,12 +1,14 @@
 package pl.jurkir.skiapi.manager;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import pl.jurkir.skiapi.dao.Voivodeship;
 import pl.jurkir.skiapi.repository.VoivodeshipRepository;
 import pl.jurkir.skiapi.service.VoivodeshipService;
 
 import java.util.List;
 
+@Service
 public class VoivodeShipManager implements VoivodeshipService {
 
     @Autowired

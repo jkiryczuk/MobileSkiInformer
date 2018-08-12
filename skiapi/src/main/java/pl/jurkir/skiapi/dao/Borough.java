@@ -1,11 +1,15 @@
 package pl.jurkir.skiapi.dao;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.util.List;
 
+@Data
 @Entity
 @Table(name = "boroughs")
 public class Borough {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -19,31 +23,4 @@ public class Borough {
 
     @OneToMany(mappedBy = "borough")
     private List<SkiResort> resorts;
-
-    public Borough() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public County getCounty() {
-        return county;
-    }
-
-    public void setCounty(County county) {
-        this.county = county;
-    }
 }
