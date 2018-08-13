@@ -11,9 +11,9 @@ public class SkiResort {
     private String city;
     private float latitude;
     private float longitude;
-    private Borough borough;
+    private String borough;
 
-    public SkiResort(Long id, String name, String address, String city, float latitude, float longitude, Borough borough) {
+    public SkiResort(Long id, String name, String address, String city, float latitude, float longitude, String borough) {
         this.id = id;
         this.name = name;
         this.address = address;
@@ -23,25 +23,14 @@ public class SkiResort {
         this.borough = borough;
     }
 
-    public SkiResort(SkiResort skiResort) {
+    public SkiResort(pl.jurkir.skiapi.dao.SkiResort skiResort) {
         this.id = skiResort.getId();
         this.name = skiResort.getName();
         this.address = skiResort.getAddress();
         this.city = skiResort.getCity();
         this.latitude = skiResort.getLatitude();
         this.longitude = skiResort.getLongitude();
-        Borough borough = new Borough();
-        borough.setId(skiResort.getBorough().getId());
-        borough.setName(skiResort.getBorough().getName());
-        County county = new County();
-        county.setId(skiResort.getBorough().getCounty().getId());
-        county.setName(skiResort.getBorough().getCounty().getName());
-        Voivodeship voivodeship = new Voivodeship();
-        voivodeship.setId(skiResort.getBorough().getCounty().getVoivodeship().getId());
-        voivodeship.setName(skiResort.getBorough().getCounty().getVoivodeship().getName());
-        county.setVoivodeship(voivodeship);
-        borough.setCounty(county);
-        this.borough = borough;
+        this.borough = skiResort.getBorough().getName();
     }
 
     public SkiResort() {
