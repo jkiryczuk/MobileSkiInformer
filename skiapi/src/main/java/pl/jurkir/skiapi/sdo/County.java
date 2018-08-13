@@ -5,7 +5,6 @@ import lombok.Data;
 import java.util.ArrayList;
 import java.util.List;
 
-//TODO dodać listę gmin -- czy konieczne?
 @Data
 public class County {
 

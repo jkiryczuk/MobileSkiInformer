@@ -33,8 +33,8 @@ public class Voivodeship {
             List<Borough> boroughs = new ArrayList<>();
             for (int j = 0; j < county.getBoroughs().size(); j++) {
                 Borough borough = new Borough();
-                borough.setId(county.getBoroughs().get(j).getId());
-                borough.setName(county.getBoroughs().get(j).getName());
+                borough.setId(voivodeship.getCounties().get(i).getBoroughs().get(j).getId());
+                borough.setName(voivodeship.getCounties().get(i).getBoroughs().get(j).getName());
                 boroughs.add(borough);
             }
             county.setBoroughs(boroughs);
