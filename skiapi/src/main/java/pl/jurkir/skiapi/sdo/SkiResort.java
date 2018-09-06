@@ -1,8 +1,11 @@
 package pl.jurkir.skiapi.sdo;
 
-import lombok.Data;
+import lombok.*;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class SkiResort {
 
     private Long id;
@@ -13,16 +16,6 @@ public class SkiResort {
     private float longitude;
     private String borough;
 
-    public SkiResort(Long id, String name, String address, String city, float latitude, float longitude, String borough) {
-        this.id = id;
-        this.name = name;
-        this.address = address;
-        this.city = city;
-        this.latitude = latitude;
-        this.longitude = longitude;
-        this.borough = borough;
-    }
-
     public SkiResort(pl.jurkir.skiapi.dao.SkiResort skiResort) {
         this.id = skiResort.getId();
         this.name = skiResort.getName();
@@ -31,8 +24,5 @@ public class SkiResort {
         this.latitude = skiResort.getLatitude();
         this.longitude = skiResort.getLongitude();
         this.borough = skiResort.getBorough().getName();
-    }
-
-    public SkiResort() {
     }
 }

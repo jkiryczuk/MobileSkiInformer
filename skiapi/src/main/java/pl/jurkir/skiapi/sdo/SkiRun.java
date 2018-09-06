@@ -2,7 +2,6 @@ package pl.jurkir.skiapi.sdo;
 
 import lombok.Data;
 
-//TODO MANY TO MANY
 @Data
 public class SkiRun {
 
