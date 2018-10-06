@@ -1,4 +1,4 @@
-package jkiryczuk.pl.mobileskiinformer.api.model.response;
+package jkiryczuk.pl.mobileskiinformer.model.response;
 
 import lombok.Data;
 
