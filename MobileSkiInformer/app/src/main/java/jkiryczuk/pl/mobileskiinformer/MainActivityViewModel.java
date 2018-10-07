@@ -11,12 +11,14 @@ public class MainActivityViewModel {
 
     private DataRepository repository;
     private SharedPrefs sharedPrefsUtils;
+    private BoroughResponse boroughResponse;
     private final MutableLiveData<Resource<BoroughResponse>> serverResponse;
 
     public MainActivityViewModel(DataRepository repository, SharedPrefs sharedPrefsUtils) {
         this.repository = repository;
         this.sharedPrefsUtils = sharedPrefsUtils;
         serverResponse = new MutableLiveData<>();
+        boroughResponse = new BoroughResponse();
     }
 
     public void fetchTestData(){
@@ -25,5 +27,13 @@ public class MainActivityViewModel {
 
     public MutableLiveData<Resource<BoroughResponse>> getServerResponse() {
         return serverResponse;
+    }
+
+    public BoroughResponse getBoroughResponse() {
+        return boroughResponse;
+    }
+
+    public void setBoroughResponse(BoroughResponse boroughResponse) {
+        this.boroughResponse = boroughResponse;
     }
 }
