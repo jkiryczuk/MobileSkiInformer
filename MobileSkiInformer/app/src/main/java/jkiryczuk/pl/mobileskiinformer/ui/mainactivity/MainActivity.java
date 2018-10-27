@@ -14,6 +14,7 @@ import dagger.android.AndroidInjection;
 import jkiryczuk.pl.mobileskiinformer.R;
 import jkiryczuk.pl.mobileskiinformer.databinding.ActivityMainBinding;
 import jkiryczuk.pl.mobileskiinformer.ui.favouritescreen.FavouritesFragment;
+import jkiryczuk.pl.mobileskiinformer.ui.nearbyscreen.NearbyFragment;
 import jkiryczuk.pl.mobileskiinformer.ui.searchscreen.SearchFragment;
 
 public class MainActivity extends AppCompatActivity {
@@ -23,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
     final Fragment fragment1 = new FavouritesFragment();
     final Fragment fragment2 = new SearchFragment();
-    final Fragment fragment3 = new FavouritesFragment();
+    final Fragment fragment3 = new NearbyFragment();
     final FragmentManager fm = getSupportFragmentManager();
     Fragment active = fragment1;
 

@@ -6,6 +6,8 @@ import jkiryczuk.pl.mobileskiinformer.ui.mainactivity.MainActivity;
 import jkiryczuk.pl.mobileskiinformer.ui.mainactivity.MainActivityModule;
 import jkiryczuk.pl.mobileskiinformer.ui.favouritescreen.FavouritesFragment;
 import jkiryczuk.pl.mobileskiinformer.ui.favouritescreen.FavouritesModule;
+import jkiryczuk.pl.mobileskiinformer.ui.nearbyscreen.NearbyFragment;
+import jkiryczuk.pl.mobileskiinformer.ui.nearbyscreen.NearbyModule;
 import jkiryczuk.pl.mobileskiinformer.ui.searchscreen.SearchFragment;
 import jkiryczuk.pl.mobileskiinformer.ui.searchscreen.SearchModule;
 
@@ -21,4 +23,6 @@ abstract class ActivityBuilder {
     @ContributesAndroidInjector(modules = SearchModule.class)
     abstract SearchFragment bindSearchFragment();
 
+    @ContributesAndroidInjector(modules = NearbyModule.class)
+    abstract NearbyFragment bindNearbyFragment();
 }
