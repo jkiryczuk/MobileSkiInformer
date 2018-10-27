@@ -4,7 +4,7 @@
     <data>
         <variable
             name="viewModel"
-            type="jkiryczuk.pl.mobileskiinformer.favouritescreen.FavouritesViewModel" />
+            type="jkiryczuk.pl.mobileskiinformer.ui.favouritescreen.FavouritesViewModel" />
     </data>
 
     <FrameLayout

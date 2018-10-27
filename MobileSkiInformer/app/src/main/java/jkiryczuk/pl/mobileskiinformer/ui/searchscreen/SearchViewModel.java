@@ -1,4 +1,4 @@
-package jkiryczuk.pl.mobileskiinformer.searchscreen;
+package jkiryczuk.pl.mobileskiinformer.ui.searchscreen;
 
 import jkiryczuk.pl.mobileskiinformer.repository.DataRepository;
 import jkiryczuk.pl.mobileskiinformer.utils.sharedprefsutils.SharedPrefs;

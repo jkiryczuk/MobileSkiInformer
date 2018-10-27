@@ -4,7 +4,7 @@
     <data>
         <variable
             name="binding"
-            type="jkiryczuk.pl.mobileskiinformer.MainActivityViewModel"/>
+            type="jkiryczuk.pl.mobileskiinformer.ui.mainactivity.MainActivityViewModel"/>
     </data>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"

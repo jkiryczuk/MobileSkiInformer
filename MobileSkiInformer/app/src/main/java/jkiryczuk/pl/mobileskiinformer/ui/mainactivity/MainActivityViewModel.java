@@ -1,4 +1,4 @@
-package jkiryczuk.pl.mobileskiinformer;
+package jkiryczuk.pl.mobileskiinformer.ui.mainactivity;
 
 import android.arch.lifecycle.MutableLiveData;
 

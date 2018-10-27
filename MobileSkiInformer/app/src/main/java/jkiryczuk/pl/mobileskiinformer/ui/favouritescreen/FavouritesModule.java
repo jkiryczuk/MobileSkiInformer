@@ -1,4 +1,4 @@
-package jkiryczuk.pl.mobileskiinformer.favouritescreen;
+package jkiryczuk.pl.mobileskiinformer.ui.favouritescreen;
 
 import dagger.Module;
 import dagger.Provides;

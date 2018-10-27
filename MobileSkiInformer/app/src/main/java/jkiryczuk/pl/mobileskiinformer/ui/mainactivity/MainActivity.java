@@ -1,4 +1,4 @@
-package jkiryczuk.pl.mobileskiinformer;
+package jkiryczuk.pl.mobileskiinformer.ui.mainactivity;
 
 import android.databinding.DataBindingUtil;
 import android.support.design.widget.BottomNavigationView;
@@ -11,18 +11,19 @@ import android.util.Log;
 import javax.inject.Inject;
 
 import dagger.android.AndroidInjection;
+import jkiryczuk.pl.mobileskiinformer.R;
 import jkiryczuk.pl.mobileskiinformer.databinding.ActivityMainBinding;
-import jkiryczuk.pl.mobileskiinformer.favouritescreen.Favourites;
-import jkiryczuk.pl.mobileskiinformer.searchscreen.SearchFragment;
+import jkiryczuk.pl.mobileskiinformer.ui.favouritescreen.FavouritesFragment;
+import jkiryczuk.pl.mobileskiinformer.ui.searchscreen.SearchFragment;
 
 public class MainActivity extends AppCompatActivity {
 
     @Inject
     MainActivityViewModel viewModel;
 
-    final Fragment fragment1 = new Favourites();
+    final Fragment fragment1 = new FavouritesFragment();
     final Fragment fragment2 = new SearchFragment();
-    final Fragment fragment3 = new Favourites();
+    final Fragment fragment3 = new FavouritesFragment();
     final FragmentManager fm = getSupportFragmentManager();
     Fragment active = fragment1;
 

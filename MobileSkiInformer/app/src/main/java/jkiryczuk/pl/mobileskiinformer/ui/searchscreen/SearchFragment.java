@@ -1,4 +1,4 @@
-package jkiryczuk.pl.mobileskiinformer.searchscreen;
+package jkiryczuk.pl.mobileskiinformer.ui.searchscreen;
 
 
 import android.os.Bundle;
@@ -10,8 +10,6 @@ import android.view.ViewGroup;
 import javax.inject.Inject;
 
 import dagger.android.support.AndroidSupportInjection;
-import jkiryczuk.pl.mobileskiinformer.R;
-import jkiryczuk.pl.mobileskiinformer.databinding.FavouritesFragmentBinding;
 import jkiryczuk.pl.mobileskiinformer.databinding.FragmentSearchBinding;
 
 /**

@@ -1,8 +1,8 @@
-package jkiryczuk.pl.mobileskiinformer.searchscreen;
+package jkiryczuk.pl.mobileskiinformer.ui.searchscreen;
 
 import dagger.Module;
 import dagger.Provides;
-import jkiryczuk.pl.mobileskiinformer.favouritescreen.FavouritesViewModel;
+import jkiryczuk.pl.mobileskiinformer.ui.favouritescreen.FavouritesViewModel;
 import jkiryczuk.pl.mobileskiinformer.repository.DataRepository;
 import jkiryczuk.pl.mobileskiinformer.utils.sharedprefsutils.SharedPrefs;
 

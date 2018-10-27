@@ -1,4 +1,4 @@
-package jkiryczuk.pl.mobileskiinformer;
+package jkiryczuk.pl.mobileskiinformer.ui.mainactivity;
 
 import dagger.Module;
 import dagger.Provides;

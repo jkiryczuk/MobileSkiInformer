@@ -2,12 +2,12 @@ package jkiryczuk.pl.mobileskiinformer.di;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
-import jkiryczuk.pl.mobileskiinformer.MainActivity;
-import jkiryczuk.pl.mobileskiinformer.MainActivityModule;
-import jkiryczuk.pl.mobileskiinformer.favouritescreen.Favourites;
-import jkiryczuk.pl.mobileskiinformer.favouritescreen.FavouritesModule;
-import jkiryczuk.pl.mobileskiinformer.searchscreen.SearchFragment;
-import jkiryczuk.pl.mobileskiinformer.searchscreen.SearchModule;
+import jkiryczuk.pl.mobileskiinformer.ui.mainactivity.MainActivity;
+import jkiryczuk.pl.mobileskiinformer.ui.mainactivity.MainActivityModule;
+import jkiryczuk.pl.mobileskiinformer.ui.favouritescreen.FavouritesFragment;
+import jkiryczuk.pl.mobileskiinformer.ui.favouritescreen.FavouritesModule;
+import jkiryczuk.pl.mobileskiinformer.ui.searchscreen.SearchFragment;
+import jkiryczuk.pl.mobileskiinformer.ui.searchscreen.SearchModule;
 
 @Module
 abstract class ActivityBuilder {
@@ -16,7 +16,7 @@ abstract class ActivityBuilder {
     abstract MainActivity bindMainActivity();
 
     @ContributesAndroidInjector(modules = FavouritesModule.class)
-    abstract Favourites bindFavourites();
+    abstract FavouritesFragment bindFavourites();
 
     @ContributesAndroidInjector(modules = SearchModule.class)
     abstract SearchFragment bindSearchFragment();
