@@ -3,13 +3,17 @@ package jkiryczuk.pl.mobileskiinformer.repository;
 import android.arch.lifecycle.MutableLiveData;
 import android.support.annotation.NonNull;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import jkiryczuk.pl.mobileskiinformer.api.manager.RetrofitClient;
 import jkiryczuk.pl.mobileskiinformer.api.service.SkiApiService;
 import jkiryczuk.pl.mobileskiinformer.model.NetworkError;
+import jkiryczuk.pl.mobileskiinformer.model.ResortsList;
 import jkiryczuk.pl.mobileskiinformer.model.Resource;
 import jkiryczuk.pl.mobileskiinformer.model.response.BoroughResponse;
+import jkiryczuk.pl.mobileskiinformer.model.response.SkiResortResponse;
 import jkiryczuk.pl.mobileskiinformer.utils.errorutil.ErrorUtil;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -32,7 +36,41 @@ public class SkiDataRepository implements DataRepository {
     @Override
     public void getBorough(Long id, MutableLiveData<Resource<BoroughResponse>> liveData) {
         Call<BoroughResponse> call = service.getBorough(id);
-        commitNetworkCall(call,liveData);
+        commitNetworkCall(call, liveData);
+    }
+
+    @Override
+    public void getResorts(MutableLiveData<Resource<ResortsList>> liveData) {
+        Call<List<SkiResortResponse>> call = service.getResorts();
+        commitResortscall(call, liveData);
+    }
+
+    private void commitResortscall(Call<List<SkiResortResponse>> call, MutableLiveData<Resource<ResortsList>> liveData) {
+        call.enqueue(new Callback<List<SkiResortResponse>>() {
+            @Override
+            public void onResponse(Call<List<SkiResortResponse>> call, Response<List<SkiResortResponse>> response) {
+                if (liveData == null) {
+                    return;
+                }
+
+                NetworkError networkError = null;
+                if (response.errorBody() != null) {
+                    networkError = ErrorUtil.parseError(response);
+                }
+                final ResortsList resortsList = new ResortsList();
+                if (response.isSuccessful()) {
+                    resortsList.setResortsList(response.body());
+                    liveData.setValue(Resource.success(resortsList));
+                } else {
+                    liveData.setValue(Resource.error(networkError.getMessage(), resortsList));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<SkiResortResponse>> call, Throwable t) {
+                liveData.setValue(Resource.failure());
+            }
+        });
     }
 
     private <ResponseT>
