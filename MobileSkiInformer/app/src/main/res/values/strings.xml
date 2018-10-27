@@ -1,3 +1,10 @@
 <resources>
-    <string name="app_name">MobileSkiInformer</string>
+    <string name="app_name">Informator</string>
+    <string name="text_favorites">Ulubione</string>
+    <string name="text_search">Wyszukaj</string>
+    <string name="text_nearby">W pobliżu</string>
+    <string name="noFavs">Aktualnie nie masz dodanych ulubionych</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

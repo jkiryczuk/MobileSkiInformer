@@ -1,25 +1,30 @@
 package jkiryczuk.pl.mobileskiinformer;
 
-import android.arch.lifecycle.Observer;
 import android.databinding.DataBindingUtil;
-import android.support.annotation.Nullable;
+import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Button;
-import android.widget.TextView;
 
 import javax.inject.Inject;
 
 import dagger.android.AndroidInjection;
 import jkiryczuk.pl.mobileskiinformer.databinding.ActivityMainBinding;
-import jkiryczuk.pl.mobileskiinformer.model.Resource;
-import jkiryczuk.pl.mobileskiinformer.model.response.BoroughResponse;
+import jkiryczuk.pl.mobileskiinformer.favouritescreen.Favourites;
+import jkiryczuk.pl.mobileskiinformer.searchscreen.SearchFragment;
 
 public class MainActivity extends AppCompatActivity {
 
     @Inject
     MainActivityViewModel viewModel;
+
+    final Fragment fragment1 = new Favourites();
+    final Fragment fragment2 = new SearchFragment();
+    final Fragment fragment3 = new Favourites();
+    final FragmentManager fm = getSupportFragmentManager();
+    Fragment active = fragment1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +33,13 @@ public class MainActivity extends AppCompatActivity {
         viewModel.fetchTestData();
         final ActivityMainBinding binding = DataBindingUtil.setContentView(this,
                 R.layout.activity_main);
+//        BottomNavigationView navigation = findViewById(R.id.bottom_navigation);
+        BottomNavigationView navigation = binding.bottomNavigation;
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+        fm.beginTransaction().add(R.id.fragmentFrame, fragment3, "3").hide(fragment3).commit();
+        fm.beginTransaction().add(R.id.fragmentFrame, fragment2, "2").hide(fragment2).commit();
+        fm.beginTransaction().add(R.id.fragmentFrame,fragment1, "1").commit();
         binding.setBinding(viewModel);
         initializeObservers();
     }
@@ -45,9 +57,27 @@ public class MainActivity extends AppCompatActivity {
             }
             Log.d("WORK", "DATA FETCH FROM SERVER");
             viewModel.setBoroughResponse(boroughResponseResource.getData());
-            //            TextView view = findViewById(R.id.textView);
-//            view.setText(boroughResponseResource.getData().getName());
-
         });
     }
+
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = item -> {
+                switch (item.getItemId()) {
+                    case R.id.action_favorites:
+                        fm.beginTransaction().hide(active).show(fragment1).commit();
+                        active = fragment1;
+                        return true;
+
+                    case R.id.action_search:
+                        fm.beginTransaction().hide(active).show(fragment2).commit();
+                        active = fragment2;
+                        return true;
+
+                    case R.id.action_nearby:
+                        fm.beginTransaction().hide(active).show(fragment3).commit();
+                        active = fragment3;
+                        return true;
+                }
+                return false;
+            };
 }
