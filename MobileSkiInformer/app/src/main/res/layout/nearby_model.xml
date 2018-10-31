@@ -45,7 +45,7 @@
             android:layout_height="0dp"
             />
         <TextView
-            android:text="@{item.city}"
+            android:text="@{item.latitude}"
             android:layout_weight="20"
             android:layout_width="match_parent"
             android:layout_height="0dp"

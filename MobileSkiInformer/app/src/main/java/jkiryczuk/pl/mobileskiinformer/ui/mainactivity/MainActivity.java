@@ -35,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
         viewModel.fetchTestData();
         final ActivityMainBinding binding = DataBindingUtil.setContentView(this,
                 R.layout.activity_main);
-//        BottomNavigationView navigation = findViewById(R.id.bottom_navigation);
         BottomNavigationView navigation = binding.bottomNavigation;
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 

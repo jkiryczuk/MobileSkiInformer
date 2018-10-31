@@ -18,6 +18,12 @@ public class SkiResort {
     private String address;
     @Column(name = "city")
     private String city;
+    @Column(name = "phonenumber")
+    private String phonenumber;
+    @Column(name = "website")
+    private String website;
+    @Column(name = "map_adress")
+    private String mapadress;
     @Column(name = "latitude")
     private float latitude;
     @Column(name = "longitude")
