@@ -20,6 +20,10 @@ public class SkiRun {
     @Column(name = "height_difference")
     private int heightDifference;
 
+    @ManyToOne
+    @JoinColumn(name = "resort", nullable = false)
+    private SkiResort resort;
+
     @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(
             name = "ski_run_ski_run_type",

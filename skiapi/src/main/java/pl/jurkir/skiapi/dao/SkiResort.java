@@ -3,6 +3,7 @@ package pl.jurkir.skiapi.dao;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -31,4 +32,6 @@ public class SkiResort {
     @ManyToOne
     @JoinColumn(name = "borough", nullable = false)
     private Borough borough;
+    @OneToMany(mappedBy = "resort")
+    List<SkiRun> skiRuns;
 }

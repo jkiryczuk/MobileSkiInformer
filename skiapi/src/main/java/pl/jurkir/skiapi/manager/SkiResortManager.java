@@ -40,4 +40,9 @@ public class SkiResortManager implements SkiResortService {
     public List<SkiResort> findAll() {
         return skiResortRepository.findAll();
     }
+
+    @Override
+    public List<SkiResort> findByVoivodeship(Long voivodeshipid){
+        return skiResortRepository.findSkiResortByVoivodeShip(voivodeshipid);
+    }
 }

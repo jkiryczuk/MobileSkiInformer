@@ -15,4 +15,6 @@ public interface SkiResortService {
     void deleteSkiResort(Long id);
 
     List<SkiResort> findAll();
+
+    List<SkiResort> findByVoivodeship(Long voivodeshipid);
 }

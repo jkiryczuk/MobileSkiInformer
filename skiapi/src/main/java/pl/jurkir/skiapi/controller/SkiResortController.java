@@ -39,4 +39,14 @@ public class SkiResortController {
         }
         return skiResortSdoList;
     }
+
+    @RequestMapping(value = "/by/voivodeship/{id}", method = RequestMethod.GET)
+    public List<SkiResort> findByVoivodeShip(@PathVariable("id") Long id) {
+        List<pl.jurkir.skiapi.dao.SkiResort> resorts = skiResortService.findByVoivodeship(id);
+        List<SkiResort> resortList = new ArrayList<>();
+        for (pl.jurkir.skiapi.dao.SkiResort skiResortDaoObject : resorts) {
+            resortList.add(new SkiResort(skiResortDaoObject));
+        }
+        return resortList;
+    }
 }
