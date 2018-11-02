@@ -17,4 +17,8 @@ public interface SkiResortService {
     List<SkiResort> findAll();
 
     List<SkiResort> findByVoivodeship(Long voivodeshipid);
+
+    List<SkiResort> findSkiResortByCounties(Long countyId);
+
+    List<SkiResort> findSkiResortByBorough(Long boroughId);
 }

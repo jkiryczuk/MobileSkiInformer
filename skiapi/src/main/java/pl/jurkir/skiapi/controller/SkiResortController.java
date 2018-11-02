@@ -49,4 +49,24 @@ public class SkiResortController {
         }
         return resortList;
     }
+
+    @RequestMapping(value = "/by/county/{id}", method = RequestMethod.GET)
+    public List<SkiResort> findSkiResortByCounties(@PathVariable("id") Long id) {
+        List<pl.jurkir.skiapi.dao.SkiResort> resorts = skiResortService.findSkiResortByCounties(id);
+        List<SkiResort> resortList = new ArrayList<>();
+        for (pl.jurkir.skiapi.dao.SkiResort skiResortDaoObject : resorts) {
+            resortList.add(new SkiResort(skiResortDaoObject));
+        }
+        return resortList;
+    }
+
+    @RequestMapping(value = "/by/borough/{id}", method = RequestMethod.GET)
+    public List<SkiResort> findSkiResortByBorough(@PathVariable("id") Long id) {
+        List<pl.jurkir.skiapi.dao.SkiResort> resorts = skiResortService.findSkiResortByBorough(id);
+        List<SkiResort> resortList = new ArrayList<>();
+        for (pl.jurkir.skiapi.dao.SkiResort skiResortDaoObject : resorts) {
+            resortList.add(new SkiResort(skiResortDaoObject));
+        }
+        return resortList;
+    }
 }

@@ -45,4 +45,16 @@ public class SkiResortManager implements SkiResortService {
     public List<SkiResort> findByVoivodeship(Long voivodeshipid){
         return skiResortRepository.findSkiResortByVoivodeShip(voivodeshipid);
     }
+
+    @Override
+    public List<SkiResort> findSkiResortByCounties(Long countyId){
+        return skiResortRepository.findSkiResortByCounties(countyId);
+    }
+
+    @Override
+    public List<SkiResort> findSkiResortByBorough(Long boroughId){
+        return skiResortRepository.findSkiResortByBorough(boroughId);
+    }
+
+
 }
