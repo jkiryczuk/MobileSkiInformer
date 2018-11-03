@@ -47,7 +47,7 @@ public class SearchFragment extends Fragment {
         layout = binding.includeBS.bottomSheet;
         sheetBehavior = BottomSheetBehavior.from(layout);
         swipeRefreshLayout = binding.swipeNearbyResortsContainer;
-        adapter = new SearchFragmentAdapter(resorts, getContext());
+        adapter = new SearchFragmentAdapter(resorts, getContext(),sheetBehavior);
         binding.resortsList.setAdapter(adapter);
         subscribeUi();
         setupSwipeLayoutListener();
@@ -55,32 +55,30 @@ public class SearchFragment extends Fragment {
         viewModel.setRefreshing(true);
         viewModel.initializeAllResortsData();
 
-//        sheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
-//            @Override
-//            public void onStateChanged(@NonNull View bottomSheet, int newState) {
-//                switch (newState) {
-//                    case BottomSheetBehavior.STATE_HIDDEN:
-//                        break;
-//                    case BottomSheetBehavior.STATE_EXPANDED: {
-//                        btnBottomSheet.setText("Close Sheet");
-//                    }
-//                    break;
-//                    case BottomSheetBehavior.STATE_COLLAPSED: {
-//                        btnBottomSheet.setText("Expand Sheet");
-//                    }
-//                    break;
-//                    case BottomSheetBehavior.STATE_DRAGGING:
-//                        break;
-//                    case BottomSheetBehavior.STATE_SETTLING:
-//                        break;
-//                }
-//            }
-//
-//            @Override
-//            public void onSlide(@NonNull View bottomSheet, float slideOffset) {
-//
-//            }
-//        });
+        sheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+            @Override
+            public void onStateChanged(@NonNull View bottomSheet, int newState) {
+                switch (newState) {
+                    case BottomSheetBehavior.STATE_HIDDEN:
+                        break;
+                    case BottomSheetBehavior.STATE_EXPANDED: {
+                    }
+                    break;
+                    case BottomSheetBehavior.STATE_COLLAPSED: {
+                    }
+                    break;
+                    case BottomSheetBehavior.STATE_DRAGGING:
+                        break;
+                    case BottomSheetBehavior.STATE_SETTLING:
+                        break;
+                }
+            }
+
+            @Override
+            public void onSlide(@NonNull View bottomSheet, float slideOffset) {
+
+            }
+        });
         return binding.getRoot();
 
     }
@@ -112,14 +110,5 @@ public class SearchFragment extends Fragment {
         });
     }
 
-    public void toggleBottomSheet() {
-        if (sheetBehavior.getState() != BottomSheetBehavior.STATE_EXPANDED) {
-            sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-//            btnBottomSheet.setText("Close sheet");
-        } else {
-            sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-//            btnBottomSheet.setText("Expand sheet");
-        }
-    }
 
 }
