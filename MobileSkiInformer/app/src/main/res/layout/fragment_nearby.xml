@@ -40,8 +40,8 @@
                 </LinearLayout>
 
                 <include
-                    app:isErrorVisible="@{viewModel.isErrorVisible}"
-                    layout="@layout/error_layout" />
+                app:isErrorVisible="@{viewModel.isErrorVisible}"
+                layout="@layout/error_layout" />
 
             </FrameLayout>
 

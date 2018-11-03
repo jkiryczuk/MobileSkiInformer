@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="item"
+            type="jkiryczuk.pl.mobileskiinformer.model.response.SkiResortResponse"/>
+    </data>
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardNearby"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:orientation="vertical"
+        android:elevation="10dp"
+        card_view:cardUseCompatPadding="true"
+        card_view:cardCornerRadius="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="100"
+            android:orientation="vertical">
+            <TextView
+                android:text="@{item.name}"
+                android:layout_weight="20"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                />
+            <TextView
+                android:text="@{item.address}"
+                android:layout_weight="20"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                />
+
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+</layout>
