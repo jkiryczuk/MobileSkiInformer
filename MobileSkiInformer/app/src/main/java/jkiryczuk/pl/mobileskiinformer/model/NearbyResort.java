@@ -13,5 +13,6 @@ public class NearbyResort {
     private float latitude;
     private float longitude;
     private String borough;
-    private int distance;
+    private int distance = 0;
+    private boolean favourite = false;
 }

@@ -13,6 +13,7 @@ import javax.inject.Inject;
 import dagger.android.AndroidInjection;
 import jkiryczuk.pl.mobileskiinformer.R;
 import jkiryczuk.pl.mobileskiinformer.databinding.ActivityMainBinding;
+import jkiryczuk.pl.mobileskiinformer.model.NearbyResort;
 import jkiryczuk.pl.mobileskiinformer.ui.favouritescreen.FavouritesFragment;
 import jkiryczuk.pl.mobileskiinformer.ui.nearbyscreen.NearbyFragment;
 import jkiryczuk.pl.mobileskiinformer.ui.searchscreen.SearchFragment;
@@ -42,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
         fm.beginTransaction().add(R.id.fragmentFrame, fragment2, "2").hide(fragment2).commit();
         fm.beginTransaction().add(R.id.fragmentFrame,fragment1, "1").commit();
         binding.setBinding(viewModel);
+        viewModel.fetchTestData();
         initializeObservers();
     }
 

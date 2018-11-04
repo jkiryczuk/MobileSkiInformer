@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import javax.inject.Inject;
 
 import dagger.android.support.AndroidSupportInjection;
 import jkiryczuk.pl.mobileskiinformer.databinding.FragmentNearbyBinding;
+import jkiryczuk.pl.mobileskiinformer.model.ListOfFavourites;
 import jkiryczuk.pl.mobileskiinformer.model.NearbyResort;
 import jkiryczuk.pl.mobileskiinformer.model.Resource;
 import jkiryczuk.pl.mobileskiinformer.model.response.SkiResortResponse;
@@ -28,7 +30,7 @@ public class NearbyFragment extends Fragment {
     NearbyViewModel viewModel;
     private NearbyAdapter adapter;
     private SwipeRefreshLayout swipeRefreshLayout;
-
+    private List<NearbyResort> favsResort;
     @Override
     public void onResume() {
         adapter.clear();
@@ -50,7 +52,8 @@ public class NearbyFragment extends Fragment {
 
         viewModel.setRefreshing(true);
         viewModel.initializeAllResortsData();
-
+        //TODO: w inne miejsce z logiką
+        favsResort = ListOfFavourites.getInstance().getResorts();
         return binding.getRoot();
     }
 
@@ -84,7 +87,7 @@ public class NearbyFragment extends Fragment {
                     resortsResponseList.get(i).getLatitude(),
                     resortsResponseList.get(i).getLongitude(),
                     resortsResponseList.get(i).getBorough(),
-                    100));
+                    100, false));
         }
     }
 
