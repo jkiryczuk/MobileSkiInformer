@@ -47,7 +47,7 @@ public class SearchFragment extends Fragment {
         layout = binding.includeBS.bottomSheet;
         sheetBehavior = BottomSheetBehavior.from(layout);
         swipeRefreshLayout = binding.swipeNearbyResortsContainer;
-        adapter = new SearchFragmentAdapter(resorts, getContext(),sheetBehavior);
+        adapter = new SearchFragmentAdapter(resorts, getContext(),sheetBehavior, binding);
         binding.resortsList.setAdapter(adapter);
         subscribeUi();
         setupSwipeLayoutListener();
