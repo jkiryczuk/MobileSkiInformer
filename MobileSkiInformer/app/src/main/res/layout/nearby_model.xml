@@ -15,41 +15,48 @@
     card_view:cardUseCompatPadding="true"
     card_view:cardCornerRadius="10dp">
     
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:weightSum="100"
         android:orientation="vertical">
-        <TextView
-            android:text="@{item.name}"
-            android:layout_weight="20"
+
+        <ImageView
+            android:id="@+id/miniature"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            />
+            android:layout_height="match_parent"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop" />
+
+        <ImageView
+            android:id="@+id/black"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:adjustViewBounds="true"
+            android:alpha=".7"
+            android:scaleType="centerCrop"
+            android:src="@drawable/black" />
+
         <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="49dp"
+            android:text="@{item.name}"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginBottom="59dp"
             android:text="@{item.address}"
-            android:layout_weight="20"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            />
-        <TextView
-            android:text="@{item.city}"
-            android:layout_weight="20"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            />
-        <TextView
-            android:text="@{item.borough}"
-            android:layout_weight="20"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            />
-        <TextView
-            android:text="@{item.name}"
-            android:layout_weight="20"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            />
-    </LinearLayout>
+            android:textColor="@color/white" />
+
+    </RelativeLayout>
 </android.support.v7.widget.CardView>
 </layout>

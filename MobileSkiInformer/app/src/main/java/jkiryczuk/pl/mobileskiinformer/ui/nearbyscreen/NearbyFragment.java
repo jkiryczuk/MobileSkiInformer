@@ -87,6 +87,7 @@ public class NearbyFragment extends Fragment {
                     resortsResponseList.get(i).getLatitude(),
                     resortsResponseList.get(i).getLongitude(),
                     resortsResponseList.get(i).getBorough(),
+                    resortsResponseList.get(i).getImage(),
                     100, false));
         }
     }

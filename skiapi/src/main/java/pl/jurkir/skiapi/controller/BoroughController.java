@@ -40,4 +40,16 @@ public class BoroughController {
         }
         return boroughSdoList;
     }
+
+    @RequestMapping(value = "/by/county/{id}")
+    List<Borough> findBoroughByCountyId(@PathVariable("id") Long countyId){
+        List<pl.jurkir.skiapi.dao.Borough> boroughDao = boroughService.findBoroughByCountyId(countyId);
+        List<Borough> boroughSdoList = new ArrayList<>();
+        for (pl.jurkir.skiapi.dao.Borough boroughDaoObject : boroughDao) {
+            boroughSdoList.add(new Borough(boroughDaoObject));
+        }
+        return boroughSdoList;
+    }
+
+
 }

@@ -14,6 +14,7 @@ public class NearbyResort {
     private float latitude;
     private float longitude;
     private String borough;
+    private String image;
     private int distance = 0;
     private boolean favourite = false;
 
@@ -25,5 +26,6 @@ public class NearbyResort {
         this.latitude = response.getLatitude();
         this.longitude = response.getLongitude();
         this.borough = response.getBorough();
+        this.image = response.getImage();
     }
 }

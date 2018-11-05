@@ -15,4 +15,8 @@ public interface BoroughService {
     void deleteBorough(Long id);
 
     List<Borough> findAll();
+
+    List<Borough> findBoroughByCountyId(Long countyId);
+
+
 }

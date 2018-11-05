@@ -11,4 +11,5 @@ public class SkiResortResponse {
     private float latitude;
     private float longitude;
     private String borough;
+    private String image;
 }

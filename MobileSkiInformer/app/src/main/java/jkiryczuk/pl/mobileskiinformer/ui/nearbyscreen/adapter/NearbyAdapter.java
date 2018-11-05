@@ -7,6 +7,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 
 import java.util.List;
 
@@ -42,7 +46,18 @@ public class NearbyAdapter extends RecyclerView.Adapter<NearbyAdapter.NearbyView
     public void onBindViewHolder(@NonNull NearbyViewHolder nearbyViewHolder, int i) {
         final NearbyResort resort = resorts.get(i);
         nearbyViewHolder.bindData(resort);
+        if (nearbyViewHolder.binding != null) {
+            setMiniature(resort.getImage(), nearbyViewHolder.binding.miniature);
+        }
+    }
 
+    private void setMiniature(String image, ImageView miniature) {
+        Glide
+                .with(context)
+                .load(image)
+                .apply(new RequestOptions()
+                        .error(R.drawable.error_image_icon))
+                .into(miniature);
     }
 
     @Override

@@ -40,4 +40,9 @@ public class BoroughManager implements BoroughService {
     public List<Borough> findAll() {
         return boroughRepository.findAll();
     }
+
+    @Override
+    public List<Borough> findBoroughByCountyId(Long countyId) {
+        return  boroughRepository.findBoroughByCountyId(countyId);
+    }
 }

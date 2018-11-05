@@ -29,6 +29,8 @@ public class SkiResort {
     private float latitude;
     @Column(name = "longitude")
     private float longitude;
+    @Column (name = "image")
+    private String image;
     @ManyToOne
     @JoinColumn(name = "borough", nullable = false)
     private Borough borough;

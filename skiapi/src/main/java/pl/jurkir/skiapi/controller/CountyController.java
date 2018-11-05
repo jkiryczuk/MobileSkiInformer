@@ -39,4 +39,14 @@ public class CountyController {
         }
         return countySdoList;
     }
+
+    @RequestMapping(value = "/by/voivodeship/{id}", method = RequestMethod.GET)
+    public List<County> findByVoivodeship(@PathVariable("id") Long id){
+        List<pl.jurkir.skiapi.dao.County> counties = countyService.findCountiesByVoivodeship(id);
+        List<County> countySdoList = new ArrayList<>();
+        for (pl.jurkir.skiapi.dao.County countyDaoObject : counties) {
+            countySdoList.add(new County(countyDaoObject));
+        }
+        return countySdoList;
+    }
 }

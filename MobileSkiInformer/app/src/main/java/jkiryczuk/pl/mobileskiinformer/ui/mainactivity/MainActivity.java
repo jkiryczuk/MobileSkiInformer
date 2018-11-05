@@ -13,7 +13,6 @@ import javax.inject.Inject;
 import dagger.android.AndroidInjection;
 import jkiryczuk.pl.mobileskiinformer.R;
 import jkiryczuk.pl.mobileskiinformer.databinding.ActivityMainBinding;
-import jkiryczuk.pl.mobileskiinformer.model.NearbyResort;
 import jkiryczuk.pl.mobileskiinformer.ui.favouritescreen.FavouritesFragment;
 import jkiryczuk.pl.mobileskiinformer.ui.nearbyscreen.NearbyFragment;
 import jkiryczuk.pl.mobileskiinformer.ui.searchscreen.SearchFragment;

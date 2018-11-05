@@ -18,6 +18,7 @@ public class SkiResort {
     private float latitude;
     private float longitude;
     private String borough;
+    private String image;
 
     public SkiResort(pl.jurkir.skiapi.dao.SkiResort skiResort) {
         this.id = skiResort.getId();
@@ -30,5 +31,6 @@ public class SkiResort {
         this.latitude = skiResort.getLatitude();
         this.longitude = skiResort.getLongitude();
         this.borough = skiResort.getBorough().getName();
+        this.image= skiResort.getImage();
     }
 }
