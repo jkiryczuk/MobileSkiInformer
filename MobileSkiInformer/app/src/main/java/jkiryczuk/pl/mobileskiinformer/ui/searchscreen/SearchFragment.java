@@ -20,6 +20,7 @@ import javax.inject.Inject;
 import dagger.android.support.AndroidSupportInjection;
 import jkiryczuk.pl.mobileskiinformer.R;
 import jkiryczuk.pl.mobileskiinformer.databinding.FragmentSearchBinding;
+import jkiryczuk.pl.mobileskiinformer.model.NearbyResort;
 import jkiryczuk.pl.mobileskiinformer.model.Resource;
 import jkiryczuk.pl.mobileskiinformer.model.response.SkiResortResponse;
 import jkiryczuk.pl.mobileskiinformer.ui.nearbyscreen.adapter.NearbyAdapter;
@@ -35,6 +36,7 @@ public class SearchFragment extends Fragment {
     private SearchFragmentAdapter adapter;
     private SwipeRefreshLayout swipeRefreshLayout;
     private final List<SkiResortResponse> resorts = new ArrayList<>();
+    private final List<NearbyResort> resorts2 = new ArrayList<>();
     BottomSheetBehavior sheetBehavior;
     LinearLayout layout;
 
@@ -47,7 +49,7 @@ public class SearchFragment extends Fragment {
         layout = binding.includeBS.bottomSheet;
         sheetBehavior = BottomSheetBehavior.from(layout);
         swipeRefreshLayout = binding.swipeNearbyResortsContainer;
-        adapter = new SearchFragmentAdapter(resorts, getContext(),sheetBehavior, binding);
+        adapter = new SearchFragmentAdapter(resorts2, getContext(),sheetBehavior, binding);
         binding.resortsList.setAdapter(adapter);
         subscribeUi();
         setupSwipeLayoutListener();
@@ -104,7 +106,10 @@ public class SearchFragment extends Fragment {
                 return;
             }
             List<SkiResortResponse> resortsResponseList = resource.getData().getResortsList();
-           adapter.setResorts(resortsResponseList);
+            for( SkiResortResponse response : resortsResponseList) {
+                resorts2.add(new NearbyResort(response));
+            }
+           adapter.setResorts(resorts2);
             viewModel.showError(false);
             viewModel.setRefreshing(false);
         });

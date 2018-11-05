@@ -14,23 +14,24 @@ import java.util.List;
 import jkiryczuk.pl.mobileskiinformer.R;
 import jkiryczuk.pl.mobileskiinformer.databinding.FragmentSearchBinding;
 import jkiryczuk.pl.mobileskiinformer.databinding.SearchItemBinding;
+import jkiryczuk.pl.mobileskiinformer.model.NearbyResort;
 import jkiryczuk.pl.mobileskiinformer.model.response.SkiResortResponse;
 
 public class SearchFragmentAdapter extends RecyclerView.Adapter<SearchFragmentAdapter.SearchViewHolder> {
 
-    private List<SkiResortResponse> resorts;
+    private List<NearbyResort> resorts;
     private Context context;
     private BottomSheetBehavior sheetBehavior;
     private FragmentSearchBinding binding;
 
-    public SearchFragmentAdapter(List<SkiResortResponse> resorts, Context context, BottomSheetBehavior sheetBehavior, FragmentSearchBinding binding) {
+    public SearchFragmentAdapter(List<NearbyResort> resorts, Context context, BottomSheetBehavior sheetBehavior, FragmentSearchBinding binding) {
         this.resorts = resorts;
         this.context = context;
         this.sheetBehavior = sheetBehavior;
         this.binding = binding;
     }
 
-    public void setResorts(List<SkiResortResponse> resorts) {
+    public void setResorts(List<NearbyResort> resorts) {
         this.resorts = resorts;
         notifyDataSetChanged();
     }
@@ -45,7 +46,7 @@ public class SearchFragmentAdapter extends RecyclerView.Adapter<SearchFragmentAd
 
     @Override
     public void onBindViewHolder(@NonNull SearchFragmentAdapter.SearchViewHolder searchViewHolder, int i) {
-        final SkiResortResponse resort = resorts.get(i);
+        final NearbyResort resort = resorts.get(i);
         searchViewHolder.bindData(resort);
         searchViewHolder.binding.cardSearch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,14 +57,13 @@ public class SearchFragmentAdapter extends RecyclerView.Adapter<SearchFragmentAd
         });
     }
 
-    public void toggleBottomSheet(SkiResortResponse response) {
+    public void toggleBottomSheet(NearbyResort response) {
         if (sheetBehavior.getState() != BottomSheetBehavior.STATE_EXPANDED) {
             sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
             binding.includeBS.gowno.setText(response.getName());
 
         } else {
             sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-//            btnBottomSheet.setText("Expand sheet");
         }
     }
     @Override
@@ -85,7 +85,7 @@ public class SearchFragmentAdapter extends RecyclerView.Adapter<SearchFragmentAd
             binding = DataBindingUtil.bind(itemView);
         }
 
-        void bindData(SkiResortResponse resort) {
+        void bindData(NearbyResort resort) {
             binding.setItem(resort);
         }
     }

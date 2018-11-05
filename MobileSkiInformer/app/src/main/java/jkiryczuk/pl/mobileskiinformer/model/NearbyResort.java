@@ -1,5 +1,6 @@
 package jkiryczuk.pl.mobileskiinformer.model;
 
+import jkiryczuk.pl.mobileskiinformer.model.response.SkiResortResponse;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -15,4 +16,14 @@ public class NearbyResort {
     private String borough;
     private int distance = 0;
     private boolean favourite = false;
+
+    public NearbyResort(SkiResortResponse response) {
+        this.id = response.getId();
+        this.name = response.getName();
+        this.address = response.getAddress();
+        this.city = response.getCity();
+        this.latitude = response.getLatitude();
+        this.longitude = response.getLongitude();
+        this.borough = response.getBorough();
+    }
 }
