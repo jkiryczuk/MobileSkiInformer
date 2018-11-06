@@ -15,7 +15,7 @@ public class NearbyResort {
     private float longitude;
     private String borough;
     private String image;
-    private int distance = 0;
+    private float distance = 0;
     private boolean favourite = false;
 
     public NearbyResort(SkiResortResponse response) {
@@ -27,5 +27,9 @@ public class NearbyResort {
         this.longitude = response.getLongitude();
         this.borough = response.getBorough();
         this.image = response.getImage();
+    }
+
+    public String getDistance(){
+        return "Distance= "+ distance;
     }
 }

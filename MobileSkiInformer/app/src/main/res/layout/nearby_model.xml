@@ -33,6 +33,8 @@
             android:layout_height="match_parent"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
             android:adjustViewBounds="true"
             android:alpha=".7"
             android:scaleType="centerCrop"
@@ -43,7 +45,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="49dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="21dp"
             android:text="@{item.name}"
             android:textColor="@color/white" />
 
@@ -53,9 +56,18 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentBottom="true"
             android:layout_marginStart="0dp"
-            android:layout_marginBottom="59dp"
+            android:layout_marginBottom="20dp"
             android:text="@{item.address}"
             android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="@{item.getDistance}"
+            android:textColor="@color/white"/>
 
     </RelativeLayout>
 </android.support.v7.widget.CardView>

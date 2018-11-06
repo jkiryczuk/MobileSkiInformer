@@ -3,7 +3,11 @@ package jkiryczuk.pl.mobileskiinformer.ui.nearbyscreen;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
 import android.databinding.ObservableField;
+import android.location.Location;
 
+import java.util.List;
+
+import jkiryczuk.pl.mobileskiinformer.model.NearbyResort;
 import jkiryczuk.pl.mobileskiinformer.model.ResortsList;
 import jkiryczuk.pl.mobileskiinformer.model.Resource;
 import jkiryczuk.pl.mobileskiinformer.model.response.SkiResortResponse;
@@ -41,4 +45,13 @@ public class NearbyViewModel extends ViewModel {
     public void setRefreshing(boolean isVisible) {
         isRefreshing.set(isVisible);
     }
+
+    public float calculateDistance(Location currentLocation,NearbyResort resort) {
+        Location destination = new Location("destination");
+
+        destination.setLatitude(resort.getLatitude());
+        destination.setLongitude(resort.getLongitude());
+        return currentLocation.distanceTo(destination);
+    }
+
 }
