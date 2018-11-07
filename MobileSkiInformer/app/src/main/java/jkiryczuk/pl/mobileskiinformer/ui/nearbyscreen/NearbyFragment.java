@@ -98,10 +98,13 @@ public class NearbyFragment extends Fragment {
                 viewModel.setRefreshing(false);
                 return;
             }
+            adapter.clear();
             List<SkiResortResponse> resortsResponseList = resource.getData().getResortsList();
+            viewModel.rewriteList(resortsResponseList,resorts);
             if (mLastLocation != null) {
                 calculateNearest(resortsResponseList);
             }
+
             adapter.setResorts(resorts);
             viewModel.showError(false);
             viewModel.setRefreshing(false);
@@ -110,15 +113,6 @@ public class NearbyFragment extends Fragment {
 
     private void calculateNearest(List<SkiResortResponse> resortsResponseList) {
         for (int i = 0; i < resortsResponseList.size(); i++) {
-            resorts.add(new NearbyResort(resortsResponseList.get(i).getId(),
-                    resortsResponseList.get(i).getName(),
-                    resortsResponseList.get(i).getAddress(),
-                    resortsResponseList.get(i).getCity(),
-                    resortsResponseList.get(i).getLatitude(),
-                    resortsResponseList.get(i).getLongitude(),
-                    resortsResponseList.get(i).getBorough(),
-                    resortsResponseList.get(i).getImage(),
-                    0, false));
             resorts.get(i).setDistance(viewModel.calculateDistance(mLastLocation, resorts.get(i)) / 1000);
         }
     }
@@ -127,35 +121,44 @@ public class NearbyFragment extends Fragment {
         swipeRefreshLayout.setOnRefreshListener(() -> {
             Log.e(TAG, "REFRESHING");
             adapter.clear();
-            getLastLocation();
+            if(mLastLocation != null){
+                getLastLocation();
+            }
+            viewModel.initializeAllResortsData();
         });
     }
 
 
     @SuppressWarnings("MissingPermission")
     private void getLastLocation() {
-        mFusedLocationClient.getLastLocation()
-                .addOnCompleteListener(this.getActivity(), task -> {
-                    if (task.getResult() == null) {
-                        viewModel.showError(true);
-                        viewModel.setRefreshing(true);
-                        Log.e(TAG, "TASK IS NULL ");
-                    }
-                    if (task.isSuccessful() && task.getResult() != null) {
-                        Log.e(TAG, "SUCCESS");
-                        viewModel.setRefreshing(false);
-                        viewModel.showError(false);
-                        mLastLocation = task.getResult();
-                        adapter.clear();
-                        viewModel.initializeAllResortsData();
+        if (checkPermissions()){
+            mFusedLocationClient.getLastLocation()
+                    .addOnCompleteListener(this.getActivity(), task -> {
+                        if (task.getResult() == null) {
+                            viewModel.showError(true);
+                            viewModel.setRefreshing(true);
+                            Log.e(TAG, "TASK IS NULL ");
+                        }
+                        if (task.isSuccessful() && task.getResult() != null) {
+                            Log.e(TAG, "SUCCESS");
+                            viewModel.setRefreshing(false);
+                            viewModel.showError(false);
+                            mLastLocation = task.getResult();
+                            adapter.clear();
+                            viewModel.initializeAllResortsData();
 
-                    } else {
-                        Log.w(TAG, "getLastLocation:exception", task.getException());
-                        viewModel.setRefreshing(false);
-                        viewModel.showError(true);
-                        showSnackbar(getString(R.string.no_location_detected));
-                    }
-                });
+                        } else {
+                            Log.w(TAG, "getLastLocation:exception", task.getException());
+                            viewModel.setRefreshing(false);
+                            viewModel.showError(true);
+                            showSnackbar(getString(R.string.no_location_detected));
+                        }
+                    });
+        }
+        else {
+            viewModel.showError(true);
+        }
+
     }
 
     private void showSnackbar(final String text) {
@@ -167,7 +170,7 @@ public class NearbyFragment extends Fragment {
 
     private void showSnackbar(final int mainTextStringId, final int actionStringId,
                               View.OnClickListener listener) {
-        Snackbar.make(getView().findViewById(android.R.id.content),
+        Snackbar.make(getActivity().findViewById(android.R.id.content),
                 getString(mainTextStringId),
                 Snackbar.LENGTH_INDEFINITE)
                 .setAction(getString(actionStringId), listener).show();
@@ -215,6 +218,7 @@ public class NearbyFragment extends Fragment {
 //                 Permission granted.
             getLastLocation();
         } else {
+            Log.e(TAG, "User denied");
             showSnackbar(R.string.permission_denied_explanation, R.string.settings,
                     view -> {
                         // Build intent that displays the App settings screen.

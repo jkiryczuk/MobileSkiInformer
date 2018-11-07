@@ -34,6 +34,20 @@ public class NearbyViewModel extends ViewModel {
         repository.getResorts(resortsData);
     }
 
+    public void rewriteList(List<SkiResortResponse> resortsResponseList, List<NearbyResort> resorts){
+        for (int i = 0; i < resortsResponseList.size(); i++) {
+            resorts.add(new NearbyResort(resortsResponseList.get(i).getId(),
+                    resortsResponseList.get(i).getName(),
+                    resortsResponseList.get(i).getAddress(),
+                    resortsResponseList.get(i).getCity(),
+                    resortsResponseList.get(i).getLatitude(),
+                    resortsResponseList.get(i).getLongitude(),
+                    resortsResponseList.get(i).getBorough(),
+                    resortsResponseList.get(i).getImage(),
+                    0, false));
+        }
+    }
+
     public MutableLiveData<Resource<ResortsList>> getResortsData() {
         return resortsData;
     }
