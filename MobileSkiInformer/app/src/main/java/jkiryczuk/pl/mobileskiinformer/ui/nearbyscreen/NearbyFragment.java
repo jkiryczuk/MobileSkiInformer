@@ -22,6 +22,7 @@ import android.view.ViewGroup;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 
 import java.util.ArrayList;
@@ -56,7 +57,7 @@ public class NearbyFragment extends Fragment {
     @Override
     public void onResume() {
         adapter.clear();
-        viewModel.initializeAllResortsData();
+        getLastLocation();
         super.onResume();
     }
 
@@ -75,9 +76,10 @@ public class NearbyFragment extends Fragment {
         swipeRefreshLayout = binding.swipeNearbyResortsContainer;
         adapter = new NearbyAdapter(resorts, getContext());
         binding.nearbyResortsList.setAdapter(adapter);
-
+        subscribeUi();
         setupSwipeLayoutListener();
         viewModel.setRefreshing(true);
+        viewModel.initializeAllResortsData();
         //TODO: w inne miejsce z logiką
         favsResort = ListOfFavourites.getInstance().getResorts();
         return binding.getRoot();
@@ -97,7 +99,9 @@ public class NearbyFragment extends Fragment {
                 return;
             }
             List<SkiResortResponse> resortsResponseList = resource.getData().getResortsList();
-            calculateNearest(resortsResponseList);
+            if (mLastLocation != null) {
+                calculateNearest(resortsResponseList);
+            }
             adapter.setResorts(resorts);
             viewModel.showError(false);
             viewModel.setRefreshing(false);
@@ -121,8 +125,9 @@ public class NearbyFragment extends Fragment {
 
     private void setupSwipeLayoutListener() {
         swipeRefreshLayout.setOnRefreshListener(() -> {
+            Log.e(TAG, "REFRESHING");
             adapter.clear();
-            viewModel.initializeAllResortsData();
+            getLastLocation();
         });
     }
 
@@ -132,16 +137,22 @@ public class NearbyFragment extends Fragment {
         mFusedLocationClient.getLastLocation()
                 .addOnCompleteListener(this.getActivity(), task -> {
                     if (task.getResult() == null) {
+                        viewModel.showError(true);
+                        viewModel.setRefreshing(true);
                         Log.e(TAG, "TASK IS NULL ");
                     }
                     if (task.isSuccessful() && task.getResult() != null) {
                         Log.e(TAG, "SUCCESS");
+                        viewModel.setRefreshing(false);
+                        viewModel.showError(false);
                         mLastLocation = task.getResult();
-                        subscribeUi();
+                        adapter.clear();
                         viewModel.initializeAllResortsData();
 
                     } else {
                         Log.w(TAG, "getLastLocation:exception", task.getException());
+                        viewModel.setRefreshing(false);
+                        viewModel.showError(true);
                         showSnackbar(getString(R.string.no_location_detected));
                     }
                 });
