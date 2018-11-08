@@ -6,10 +6,13 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import java.util.ArrayList;
@@ -39,6 +42,7 @@ public class SearchFragment extends Fragment {
     private final List<NearbyResort> resorts2 = new ArrayList<>();
     BottomSheetBehavior sheetBehavior;
     LinearLayout layout;
+    EditText searchInput;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -49,14 +53,23 @@ public class SearchFragment extends Fragment {
         layout = binding.includeBS.bottomSheet;
         sheetBehavior = BottomSheetBehavior.from(layout);
         swipeRefreshLayout = binding.swipeNearbyResortsContainer;
+        searchInput = binding.search;
         adapter = new SearchFragmentAdapter(resorts2, getContext(),sheetBehavior, binding);
         binding.resortsList.setAdapter(adapter);
+        addTextListener();
         subscribeUi();
         setupSwipeLayoutListener();
 
         viewModel.setRefreshing(true);
         viewModel.initializeAllResortsData();
+        setSheetBehaviourCallback();
 
+
+        return binding.getRoot();
+
+    }
+
+    private void setSheetBehaviourCallback() {
         sheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
             @Override
             public void onStateChanged(@NonNull View bottomSheet, int newState) {
@@ -81,12 +94,40 @@ public class SearchFragment extends Fragment {
 
             }
         });
-        return binding.getRoot();
+    }
 
+    private void addTextListener() {
+        searchInput.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                charSequence = charSequence.toString().toLowerCase();
+
+                final List<NearbyResort> filteredList = new ArrayList<>();
+
+                for (int x = 0; x < resorts2.size(); x++) {
+
+                    final String text = resorts2.get(x).getName().toLowerCase();
+                    if (text.contains(charSequence)) {
+
+                        filteredList.add(resorts2.get(x));
+                    }
+                }
+                adapter.setResorts(filteredList);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+            }
+        });
     }
 
     private void setupSwipeLayoutListener() {
         swipeRefreshLayout.setOnRefreshListener(() -> {
+            resorts2.clear();
             adapter.clear();
             viewModel.initializeAllResortsData();
         });
@@ -114,6 +155,7 @@ public class SearchFragment extends Fragment {
             viewModel.setRefreshing(false);
         });
     }
+
 
 
 }

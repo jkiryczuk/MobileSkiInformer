@@ -35,13 +35,32 @@
                         android:layout_height="match_parent"
                         android:orientation="vertical">
 
+                        <EditText
+                            android:id="@+id/search"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:paddingLeft="20dp"
+                            android:paddingRight="20dp"
+                            android:textSize="16sp"
+                            android:hint="@string/search"
+                            android:layout_marginTop="20dp" />
+                        <View
+                            android:id="@+id/border"
+                            android:layout_width="fill_parent"
+                            android:layout_height="1dp"
+                            android:layout_below="@+id/search"
+                            android:layout_marginTop="14dp"
+                            android:background="#d3d3d3"/>
+
                         <android.support.v7.widget.RecyclerView
                             android:id="@+id/resorts_list"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:overScrollMode="never"
                             app:layoutManager="android.support.v7.widget.LinearLayoutManager"
-                            tools:listitem="@layout/search_item" />
+                            tools:listitem="@layout/search_item"
+                            android:layout_below="@+id/border"/>
 
                     </LinearLayout>
 
