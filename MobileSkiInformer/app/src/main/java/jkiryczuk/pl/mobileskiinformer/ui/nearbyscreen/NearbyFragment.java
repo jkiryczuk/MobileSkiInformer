@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
@@ -18,6 +19,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -53,6 +55,8 @@ public class NearbyFragment extends Fragment {
     private static final int REQUEST_PERMISSIONS_REQUEST_CODE = 34;
     private FusedLocationProviderClient mFusedLocationClient;
     protected Location mLastLocation;
+    BottomSheetBehavior sheetBehavior;
+    LinearLayout layout;
 
     @Override
     public void onResume() {
@@ -73,13 +77,16 @@ public class NearbyFragment extends Fragment {
         } else {
             getLastLocation();
         }
+        layout = binding.includeBS.bottomSheet;
+        sheetBehavior = BottomSheetBehavior.from(layout);
         swipeRefreshLayout = binding.swipeNearbyResortsContainer;
-        adapter = new NearbyAdapter(resorts, getContext());
+        adapter = new NearbyAdapter(resorts, getContext(),sheetBehavior,binding);
         binding.nearbyResortsList.setAdapter(adapter);
         subscribeUi();
         setupSwipeLayoutListener();
         viewModel.setRefreshing(true);
         viewModel.initializeAllResortsData();
+        setSheetBehaviourCallback();
         //TODO: w inne miejsce z logiką
         favsResort = ListOfFavourites.getInstance().getResorts();
         return binding.getRoot();
@@ -87,6 +94,33 @@ public class NearbyFragment extends Fragment {
 
     private void subscribeUi() {
         observeGetResortsResult();
+    }
+
+    private void setSheetBehaviourCallback() {
+        sheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+            @Override
+            public void onStateChanged(@NonNull View bottomSheet, int newState) {
+                switch (newState) {
+                    case BottomSheetBehavior.STATE_HIDDEN:
+                        break;
+                    case BottomSheetBehavior.STATE_EXPANDED: {
+                    }
+                    break;
+                    case BottomSheetBehavior.STATE_COLLAPSED: {
+                    }
+                    break;
+                    case BottomSheetBehavior.STATE_DRAGGING:
+                        break;
+                    case BottomSheetBehavior.STATE_SETTLING:
+                        break;
+                }
+            }
+
+            @Override
+            public void onSlide(@NonNull View bottomSheet, float slideOffset) {
+
+            }
+        });
     }
 
     private void observeGetResortsResult() {
