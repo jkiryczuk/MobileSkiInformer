@@ -32,4 +32,9 @@ public class NearbyResort {
     public String getDistance(){
         return "Distance= "+ distance;
     }
+
+    public float showDistanceNumbered(){
+        return distance;
+    }
+
 }

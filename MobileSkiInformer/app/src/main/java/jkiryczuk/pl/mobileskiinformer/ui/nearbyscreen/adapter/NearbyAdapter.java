@@ -13,6 +13,8 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import jkiryczuk.pl.mobileskiinformer.R;
@@ -22,7 +24,7 @@ import jkiryczuk.pl.mobileskiinformer.databinding.NearbyModelBinding;
 import jkiryczuk.pl.mobileskiinformer.model.NearbyResort;
 import jkiryczuk.pl.mobileskiinformer.ui.nearbyscreen.NearbyFragment;
 
-public class NearbyAdapter extends RecyclerView.Adapter<NearbyAdapter.NearbyViewHolder> {
+public class NearbyAdapter extends RecyclerView.Adapter<NearbyAdapter.NearbyViewHolder> implements Comparator<NearbyResort> {
 
     private List<NearbyResort> resorts;
     private Context context;
@@ -32,6 +34,7 @@ public class NearbyAdapter extends RecyclerView.Adapter<NearbyAdapter.NearbyView
 
     public NearbyAdapter(List<NearbyResort> resorts, Context context, BottomSheetBehavior sheetBehavior, FragmentNearbyBinding binding) {
         this.resorts = resorts;
+        Collections.sort(resorts,this::compare);
         this.context = context;
         this.sheetBehavior = sheetBehavior;
         this.binding = binding;
@@ -40,6 +43,7 @@ public class NearbyAdapter extends RecyclerView.Adapter<NearbyAdapter.NearbyView
 
     public void setResorts(List<NearbyResort> resorts) {
         this.resorts = resorts;
+        Collections.sort(resorts,this::compare);
         notifyDataSetChanged();
     }
 
@@ -85,6 +89,7 @@ public class NearbyAdapter extends RecyclerView.Adapter<NearbyAdapter.NearbyView
                 .into(miniature);
     }
 
+
     @Override
     public int getItemCount() {
         return resorts.size();
@@ -93,6 +98,16 @@ public class NearbyAdapter extends RecyclerView.Adapter<NearbyAdapter.NearbyView
     public void clear() {
         resorts.clear();
         notifyDataSetChanged();
+    }
+
+    @Override
+    public int compare(NearbyResort resort, NearbyResort t1) {
+        if(resort.showDistanceNumbered() > t1.showDistanceNumbered()){
+            return 1;
+        } else if(resort.showDistanceNumbered() < t1.showDistanceNumbered()) {
+            return -1;
+        }
+        else return 0;
     }
 
     static public class NearbyViewHolder extends RecyclerView.ViewHolder {
