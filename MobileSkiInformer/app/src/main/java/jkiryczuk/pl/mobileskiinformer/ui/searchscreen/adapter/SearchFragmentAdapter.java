@@ -21,6 +21,7 @@ import jkiryczuk.pl.mobileskiinformer.databinding.SearchItemBinding;
 import jkiryczuk.pl.mobileskiinformer.model.NearbyResort;
 import jkiryczuk.pl.mobileskiinformer.model.response.SkiResortResponse;
 import jkiryczuk.pl.mobileskiinformer.model.response.SkiRunResponse;
+import jkiryczuk.pl.mobileskiinformer.ui.adapter.ListInBottomSheetAdapter;
 import jkiryczuk.pl.mobileskiinformer.utils.StaticMethods;
 
 public class SearchFragmentAdapter extends RecyclerView.Adapter<SearchFragmentAdapter.SearchViewHolder> {
@@ -57,26 +58,26 @@ public class SearchFragmentAdapter extends RecyclerView.Adapter<SearchFragmentAd
         searchViewHolder.binding.cardSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                toggleBottomSheet(resort);
+
+                ListInBottomSheetAdapter adapter = new ListInBottomSheetAdapter(resort.getSkiRuns(),context);
+                binding.includeBS.listinbottomsheet.setAdapter(adapter);
+                toggleBottomSheet(resort, adapter);
 
             }
         });
     }
 
-    public void toggleBottomSheet(NearbyResort response) {
+    public void toggleBottomSheet(NearbyResort response, ListInBottomSheetAdapter adapter) {
         if (sheetBehavior.getState() != BottomSheetBehavior.STATE_EXPANDED) {
             sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
             binding.includeBS.setItem(response);
-//            binding.includeBS.nameOfResort.setText(response.getName());
-//            binding.includeBS.addressOfResort.setText(response.getAddress());
-//            binding.includeBS.cityOfRessort.setText(response.getCity());
-//            binding.includeBS.list.setText("Ilość stoków: "+String.valueOf(response.getSkiRuns().size()));
-            StaticMethods.setMiniature(context,response.getImage(),binding.includeBS.obrazek);
-            StringBuffer buffer = new StringBuffer();
-            for(SkiRunResponse run : response.getSkiRuns()){
-                buffer.append("Trasa: "+run.getSkiRunLevel()+", "+run.getSkiRunType()+" o długości "+run.getLength()+"m i przewyższeniu "+run.getHeightDifference()+"m\n");
-            }
-            binding.includeBS.listInfo.setText(buffer.toString());
+            binding.includeBS.list.setText("Ilość stoków: "+String.valueOf(response.getSkiRuns().size()));
+            adapter.setSkiRuns(response.getSkiRuns());
+//            StringBuffer buffer = new StringBuffer();
+//            for(SkiRunResponse run : response.getSkiRuns()){
+//                buffer.append("Trasa: "+run.getSkiRunLevel()+", "+run.getSkiRunType()+" o długości "+run.getLength()+"m i przewyższeniu "+run.getHeightDifference()+"m\n");
+//
+//            binding.includeBS.listInfo.setText(buffer.toString());
 
         } else {
             sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
