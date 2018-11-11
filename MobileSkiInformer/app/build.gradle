@@ -8,7 +8,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "jkiryczuk.pl.mobileskiinformer"
-        minSdkVersion 16
+        minSdkVersion 22
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -68,6 +68,8 @@ dependencies {
     annotationProcessor "com.github.bumptech.glide:compiler:4.3.1"
 
     implementation "com.google.android.gms:play-services-location:16.0.0"
+    implementation 'com.github.s0nerik:glide-bindingadapter:1.2.1'
+
 
 
 

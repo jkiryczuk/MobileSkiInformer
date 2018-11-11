@@ -1,6 +1,9 @@
 package jkiryczuk.pl.mobileskiinformer.model;
 
+import java.util.List;
+
 import jkiryczuk.pl.mobileskiinformer.model.response.SkiResortResponse;
+import jkiryczuk.pl.mobileskiinformer.model.response.SkiRunResponse;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -17,6 +20,7 @@ public class NearbyResort {
     private String image;
     private float distance = 0;
     private boolean favourite = false;
+    private List<SkiRunResponse> skiRuns;
 
     public NearbyResort(SkiResortResponse response) {
         this.id = response.getId();
@@ -27,10 +31,11 @@ public class NearbyResort {
         this.longitude = response.getLongitude();
         this.borough = response.getBorough();
         this.image = response.getImage();
+        this.skiRuns = response.getSkiRuns();
     }
 
     public String getDistance(){
-        return "Distance= "+ distance;
+        return (int) distance +"km";
     }
 
     public float showDistanceNumbered(){

@@ -9,5 +9,4 @@ public class SkiRunResponse {
     private int heightDifference;
     private String skiRunType;
     private String skiRunLevel;
-
 }

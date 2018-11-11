@@ -8,6 +8,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 
 import java.util.List;
 
@@ -16,6 +20,8 @@ import jkiryczuk.pl.mobileskiinformer.databinding.FragmentSearchBinding;
 import jkiryczuk.pl.mobileskiinformer.databinding.SearchItemBinding;
 import jkiryczuk.pl.mobileskiinformer.model.NearbyResort;
 import jkiryczuk.pl.mobileskiinformer.model.response.SkiResortResponse;
+import jkiryczuk.pl.mobileskiinformer.model.response.SkiRunResponse;
+import jkiryczuk.pl.mobileskiinformer.utils.StaticMethods;
 
 public class SearchFragmentAdapter extends RecyclerView.Adapter<SearchFragmentAdapter.SearchViewHolder> {
 
@@ -60,12 +66,23 @@ public class SearchFragmentAdapter extends RecyclerView.Adapter<SearchFragmentAd
     public void toggleBottomSheet(NearbyResort response) {
         if (sheetBehavior.getState() != BottomSheetBehavior.STATE_EXPANDED) {
             sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-            binding.includeBS.gowno.setText(response.getName());
+            binding.includeBS.setItem(response);
+//            binding.includeBS.nameOfResort.setText(response.getName());
+//            binding.includeBS.addressOfResort.setText(response.getAddress());
+//            binding.includeBS.cityOfRessort.setText(response.getCity());
+//            binding.includeBS.list.setText("Ilość stoków: "+String.valueOf(response.getSkiRuns().size()));
+            StaticMethods.setMiniature(context,response.getImage(),binding.includeBS.obrazek);
+            StringBuffer buffer = new StringBuffer();
+            for(SkiRunResponse run : response.getSkiRuns()){
+                buffer.append("Trasa: "+run.getSkiRunLevel()+", "+run.getSkiRunType()+" o długości "+run.getLength()+"m i przewyższeniu "+run.getHeightDifference()+"m\n");
+            }
+            binding.includeBS.listInfo.setText(buffer.toString());
 
         } else {
             sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
         }
     }
+
     @Override
     public int getItemCount() {
         return resorts.size();

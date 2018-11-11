@@ -1,5 +1,7 @@
 package jkiryczuk.pl.mobileskiinformer.model.response;
 
+import java.util.List;
+
 import lombok.Data;
 
 @Data
@@ -12,4 +14,5 @@ public class SkiResortResponse {
     private float longitude;
     private String borough;
     private String image;
+    private List<SkiRunResponse> skiRuns;
 }

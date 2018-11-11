@@ -4,6 +4,10 @@ import android.app.Activity;
 import android.app.Application;
 import android.support.v4.app.Fragment;
 
+import com.bumptech.glide.annotation.GlideModule;
+import com.bumptech.glide.request.RequestOptions;
+import com.github.s0nerik.glide_bindingadapter.GlideBindingConfig;
+
 import javax.inject.Inject;
 
 import dagger.android.AndroidInjector;
@@ -21,7 +25,6 @@ public class SkiInformerApp extends Application implements HasActivityInjector, 
     @Override
     public void onCreate() {
         super.onCreate();
-
         DaggerAppComponent.builder()
                 .application(this)
                 .build()

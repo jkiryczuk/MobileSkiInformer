@@ -32,7 +32,6 @@ public class SearchViewModel {
         return resortsData;
     }
 
-
     public void showError(boolean isVisible) {
         isErrorVisible.set(isVisible);
     }

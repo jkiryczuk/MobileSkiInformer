@@ -91,7 +91,6 @@ INSERT INTO ski_run_types(id,name) values (5,'linowo-terenowa');
 INSERT INTO ski_run_types(id,name) values (6,'bezpodporowa');
 INSERT INTO ski_run_types(id,name) values (7,'koszykowa');
 INSERT INTO ski_run_types(id,name) values (8,'ruchomy chodnik');
-INSERT INTO ski_run_types(id,name) values (9,'zaczepowy');
 
 INSERT INTO ski_resorts (id,name,address,city,phonenumber,website, map_adress ,latitude,longitude,borough, image) values (1,'SkiArena Szrenica','Turystyczna 25A','Szklarska Poręba','75 717 30 35','-','https://skimap.org/data/1865/1/1301281553.jpg',50.833333333333,15.533333333333,1,'http://sudetylift.com.pl/zima/wp-content/uploads/sites/2/szrenica_02-938x703.jpg')
 INSERT INTO ski_resorts (id,name,address,city,phonenumber,website, map_adress ,latitude,longitude,borough, image) values (2,'Kompleks Narciarski Kopa w Karpaczu','Kopa','Karpacz','75 761 92 84','http://kopa.com.pl','mock',50.767083, 15.729083,2,'http://kopa.com.pl/public/ck/userfiles/images/kopa-karpacz.jpg')
@@ -105,8 +104,8 @@ INSERT INTO ski_resorts (id,name,address,city,phonenumber,website, map_adress ,l
 INSERT INTO ski_resorts (id,name,address,city,phonenumber,website, map_adress ,latitude,longitude,borough, image) values (10,'Ośrodek Sportu i Rekreacji Góra Kamieńsk','Huby Ruszczyńskie','Kamieńsk','44 737 77 30','http://gorakamiensk.info','mock',51.230833, 19.436722,8,'https://static.polskieszlaki.pl/zdjecia/wycieczki/2016-07/osrodek-rekreacyjno-narciarski-gora-kamiensk-1-1466495327.jpg')
 
 
-INSERT INTO ski_runs (id,length,height_difference, resort) values (1,275,429,1);
-INSERT INTO ski_runs (id,length,height_difference, resort) values (2,239,508,1);
+INSERT INTO ski_runs (id,length,height_difference, resort) values (1,2750,429,1);
+INSERT INTO ski_runs (id,length,height_difference, resort) values (2,2393,508,1);
 INSERT INTO ski_runs (id,length,height_difference, resort) values (3,80,17,1);
 INSERT INTO ski_runs (id,length,height_difference, resort) values (4,1390,434,1);
 INSERT INTO ski_runs (id,length,height_difference, resort) values (5,636,118,1);
@@ -114,13 +113,18 @@ INSERT INTO ski_runs (id,length,height_difference, resort) values (6,835,172,1);
 
 INSERT INTO ski_run_ski_run_type (ski_run_id, ski_run_type_id) values (1,2);
 INSERT INTO ski_run_ski_run_type (ski_run_id, ski_run_type_id) values (2,2);
-INSERT INTO ski_run_ski_run_type (ski_run_id, ski_run_type_id) values (3,9);
+INSERT INTO ski_run_ski_run_type (ski_run_id, ski_run_type_id) values (3,6);
 INSERT INTO ski_run_ski_run_type (ski_run_id, ski_run_type_id) values (4,1);
 INSERT INTO ski_run_ski_run_type (ski_run_id, ski_run_type_id) values (5,1);
 INSERT INTO ski_run_ski_run_type (ski_run_id, ski_run_type_id) values (6,1);
 
 
--- INSERT INTO ski_run_ski_run_level (ski_run_id, ski_run_level_id) values (1,1);
+INSERT INTO ski_run_ski_run_level (ski_run_id, ski_run_level_id) values (1,3);
+INSERT INTO ski_run_ski_run_level (ski_run_id, ski_run_level_id) values (2,1);
+INSERT INTO ski_run_ski_run_level (ski_run_id, ski_run_level_id) values (3,2);
+INSERT INTO ski_run_ski_run_level (ski_run_id, ski_run_level_id) values (4,1);
+INSERT INTO ski_run_ski_run_level (ski_run_id, ski_run_level_id) values (5,2);
+INSERT INTO ski_run_ski_run_level (ski_run_id, ski_run_level_id) values (6,2);
 
 
 

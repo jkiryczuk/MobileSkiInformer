@@ -23,6 +23,7 @@ import jkiryczuk.pl.mobileskiinformer.databinding.FragmentSearchBinding;
 import jkiryczuk.pl.mobileskiinformer.databinding.NearbyModelBinding;
 import jkiryczuk.pl.mobileskiinformer.model.NearbyResort;
 import jkiryczuk.pl.mobileskiinformer.ui.nearbyscreen.NearbyFragment;
+import jkiryczuk.pl.mobileskiinformer.utils.StaticMethods;
 
 public class NearbyAdapter extends RecyclerView.Adapter<NearbyAdapter.NearbyViewHolder> implements Comparator<NearbyResort> {
 
@@ -60,7 +61,7 @@ public class NearbyAdapter extends RecyclerView.Adapter<NearbyAdapter.NearbyView
         final NearbyResort resort = resorts.get(i);
         nearbyViewHolder.bindData(resort);
         if (nearbyViewHolder.binding != null) {
-            setMiniature(resort.getImage(), nearbyViewHolder.binding.miniature);
+            StaticMethods.setMiniature(context,resort.getImage(), nearbyViewHolder.binding.miniature);
         }
         nearbyViewHolder.binding.cardNearby.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,21 +74,14 @@ public class NearbyAdapter extends RecyclerView.Adapter<NearbyAdapter.NearbyView
     public void toggleBottomSheet(NearbyResort response) {
         if (sheetBehavior.getState() != BottomSheetBehavior.STATE_EXPANDED) {
             sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-            binding.includeBS.gowno.setText(response.getName());
+            binding.includeBS.nameOfResort.setText(response.getName());
+            StaticMethods.setMiniature(context,response.getImage(),binding.includeBS.obrazek);
 
         } else {
             sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
         }
     }
 
-    private void setMiniature(String image, ImageView miniature) {
-        Glide
-                .with(context)
-                .load(image)
-                .apply(new RequestOptions()
-                        .error(R.drawable.error_image_icon))
-                .into(miniature);
-    }
 
 
     @Override
