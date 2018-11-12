@@ -55,15 +55,11 @@ public class SearchFragmentAdapter extends RecyclerView.Adapter<SearchFragmentAd
     public void onBindViewHolder(@NonNull SearchFragmentAdapter.SearchViewHolder searchViewHolder, int i) {
         final NearbyResort resort = resorts.get(i);
         searchViewHolder.bindData(resort);
-        searchViewHolder.binding.cardSearch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        searchViewHolder.binding.cardSearch.setOnClickListener(v -> {
+            ListInBottomSheetAdapter adapter = new ListInBottomSheetAdapter(resort.getSkiRuns(),context);
+            binding.includeBS.listinbottomsheet.setAdapter(adapter);
+            toggleBottomSheet(resort, adapter);
 
-                ListInBottomSheetAdapter adapter = new ListInBottomSheetAdapter(resort.getSkiRuns(),context);
-                binding.includeBS.listinbottomsheet.setAdapter(adapter);
-                toggleBottomSheet(resort, adapter);
-
-            }
         });
     }
 
@@ -71,14 +67,8 @@ public class SearchFragmentAdapter extends RecyclerView.Adapter<SearchFragmentAd
         if (sheetBehavior.getState() != BottomSheetBehavior.STATE_EXPANDED) {
             sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
             binding.includeBS.setItem(response);
-            binding.includeBS.list.setText("Ilość stoków: "+String.valueOf(response.getSkiRuns().size()));
+            binding.includeBS.counterSlopes.setText("Ilość stoków: "+String.valueOf(response.getSkiRuns().size()));
             adapter.setSkiRuns(response.getSkiRuns());
-//            StringBuffer buffer = new StringBuffer();
-//            for(SkiRunResponse run : response.getSkiRuns()){
-//                buffer.append("Trasa: "+run.getSkiRunLevel()+", "+run.getSkiRunType()+" o długości "+run.getLength()+"m i przewyższeniu "+run.getHeightDifference()+"m\n");
-//
-//            binding.includeBS.listInfo.setText(buffer.toString());
-
         } else {
             sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
         }

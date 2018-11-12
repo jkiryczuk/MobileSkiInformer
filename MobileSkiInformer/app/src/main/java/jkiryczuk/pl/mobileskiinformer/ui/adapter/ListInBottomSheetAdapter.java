@@ -43,6 +43,7 @@ public class ListInBottomSheetAdapter extends  RecyclerView.Adapter<ListInBottom
         listInBottomSheetViewHolder.bindData(run);
     }
 
+
     @Override
     public int getItemCount() {
         return skiRuns.size();

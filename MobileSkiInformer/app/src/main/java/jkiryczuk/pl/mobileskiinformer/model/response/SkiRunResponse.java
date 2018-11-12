@@ -9,4 +9,12 @@ public class SkiRunResponse {
     private int heightDifference;
     private String skiRunType;
     private String skiRunLevel;
+
+    public String getLength() {
+        return String.valueOf(length);
+    }
+
+    public String getHeightDifference() {
+        return String.valueOf(heightDifference);
+    }
 }

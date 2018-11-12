@@ -29,7 +29,7 @@
             android:id="@+id/obrazek"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="30"
+            android:layout_weight="20"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
             bind:imageUrl="@{item.image}" />
@@ -38,7 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_margin="4dp"
-            android:layout_weight="70"
+            android:layout_weight="80"
             android:elevation="10dp"
             app:cardCornerRadius="10dp"
             app:cardUseCompatPadding="true">
@@ -76,20 +76,20 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/list"
+                    android:id="@+id/counterSlopes"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="#444"
                     android:textSize="10dp"
                     android:textStyle="bold" />
-
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/listinbottomsheet"
+                <TextView
+                    android:id="@+id/slopesText"
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:overScrollMode="never"
-                    app:layoutManager="android.support.v7.widget.LinearLayoutManager"
-                    tools:listitem="@layout/run_item" />
+                    android:layout_height="wrap_content"
+                    android:textColor="#444"
+                    android:textSize="10dp"
+                    android:text="@string/slopes"
+                    android:textStyle="bold" />
 
 
                 <Button
@@ -100,6 +100,16 @@
                     android:foreground="?attr/selectableItemBackground"
                     android:text="PROCEED PAYMENT"
                     android:textColor="#fff" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/listinbottomsheet"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:overScrollMode="never"
+                    app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+                    tools:listitem="@layout/run_item" />
+
+
 
             </LinearLayout>
 

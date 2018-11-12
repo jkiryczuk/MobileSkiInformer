@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -8,21 +9,115 @@
             type="jkiryczuk.pl.mobileskiinformer.model.response.SkiRunResponse" />
     </data>
 
-    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="50dp">
+            android:layout_height="100dp">
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="TExt" />
+                android:orientation="vertical"
+                android:weightSum="40">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="10"
+                    android:orientation="horizontal"
+                    android:weightSum="100">
+
+                    <TextView
+                        android:id="@+id/levelPrompt"
+                        android:layout_width="0dp"
+                        android:layout_height="20dp"
+                        android:layout_weight="50"
+                        android:text="Poziom trudności: " />
+
+                    <TextView
+                        android:id="@+id/itemLevel"
+                        android:layout_width="0dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="50"
+                        android:text="@{item.skiRunLevel}" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="10"
+                    android:weightSum="100">
+
+                    <TextView
+                        android:id="@+id/typePrompt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_weight="50"
+                        android:text="Rodzaj: " />
+
+                    <TextView
+                        android:id="@+id/itemType"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="50"
+                        android:text="@{item.skiRunType}" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="10"
+                    android:orientation="horizontal"
+                    android:weightSum="100">
+
+                    <TextView
+                        android:id="@+id/lengthPrompt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_weight="50"
+                        android:text="Długość: " />
+
+                    <TextView
+                        android:id="@+id/itemLength"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="50"
+                        android:text="@{item.length}" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="10"
+                    android:orientation="horizontal"
+                    android:weightSum="100">
+
+                    <TextView
+                        android:id="@+id/differencePrompt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_weight="50"
+                        android:text="Przewyższenie: " />
+
+                    <TextView
+                        android:id="@+id/itemDiffrence"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="50"
+                        android:text="@{item.heightDifference}" />
+                </LinearLayout>
+
+            </LinearLayout>
         </android.support.v7.widget.CardView>
 
-    </android.support.constraint.ConstraintLayout>
-
-
+    </RelativeLayout>
 </layout>
