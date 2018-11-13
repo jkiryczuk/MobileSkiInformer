@@ -54,7 +54,18 @@ public class ListOfFavourites {
             Log.e("Przy serialu",e.getMessage());
             return;
         }
+        String xd = gson.toJson(this.resorts);
         gson.toJson(this.resorts, writer);
+        try {
+            writer.flush(); //flush data to file   <---
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            writer.close(); //close write
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
