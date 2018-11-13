@@ -34,6 +34,9 @@ public class NearbyResort {
         this.skiRuns = response.getSkiRuns();
     }
 
+    public NearbyResort() {
+    }
+
     public String getDistance(){
         return (int) distance +"km";
     }

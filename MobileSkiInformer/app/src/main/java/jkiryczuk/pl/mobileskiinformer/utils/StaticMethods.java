@@ -6,6 +6,11 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.List;
 
 import jkiryczuk.pl.mobileskiinformer.R;
 import jkiryczuk.pl.mobileskiinformer.model.NearbyResort;
@@ -20,5 +25,6 @@ public class StaticMethods {
                         .error(R.drawable.error_image_icon))
                 .into(miniature);
     }
+
 
 }

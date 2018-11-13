@@ -89,6 +89,7 @@ public class NearbyFragment extends Fragment {
         setSheetBehaviourCallback();
         //TODO: w inne miejsce z logiką
         favsResort = ListOfFavourites.getInstance().getResorts();
+
         return binding.getRoot();
     }
 
@@ -142,6 +143,8 @@ public class NearbyFragment extends Fragment {
             adapter.setResorts(resorts);
             viewModel.showError(false);
             viewModel.setRefreshing(false);
+            favsResort.add(resorts.get(0));
+            ListOfFavourites.getInstance().serialize(favsResort);
         });
     }
 
