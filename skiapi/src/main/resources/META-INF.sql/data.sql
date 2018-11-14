@@ -110,6 +110,8 @@ INSERT INTO ski_runs (id,length,height_difference, resort) values (3,80,17,1);
 INSERT INTO ski_runs (id,length,height_difference, resort) values (4,1390,434,1);
 INSERT INTO ski_runs (id,length,height_difference, resort) values (5,636,118,1);
 INSERT INTO ski_runs (id,length,height_difference, resort) values (6,835,172,1);
+INSERT INTO ski_runs (id,length,height_difference, resort) values (7,800,221,8);
+INSERT INTO ski_runs (id,length,height_difference, resort) values (8,2500,443,7);
 
 INSERT INTO ski_run_ski_run_type (ski_run_id, ski_run_type_id) values (1,2);
 INSERT INTO ski_run_ski_run_type (ski_run_id, ski_run_type_id) values (2,2);
@@ -117,6 +119,8 @@ INSERT INTO ski_run_ski_run_type (ski_run_id, ski_run_type_id) values (3,6);
 INSERT INTO ski_run_ski_run_type (ski_run_id, ski_run_type_id) values (4,1);
 INSERT INTO ski_run_ski_run_type (ski_run_id, ski_run_type_id) values (5,1);
 INSERT INTO ski_run_ski_run_type (ski_run_id, ski_run_type_id) values (6,1);
+INSERT INTO ski_run_ski_run_type (ski_run_id, ski_run_type_id) values (7,2);
+INSERT INTO ski_run_ski_run_type (ski_run_id, ski_run_type_id) values (8,4);
 
 
 INSERT INTO ski_run_ski_run_level (ski_run_id, ski_run_level_id) values (1,3);
@@ -125,6 +129,8 @@ INSERT INTO ski_run_ski_run_level (ski_run_id, ski_run_level_id) values (3,2);
 INSERT INTO ski_run_ski_run_level (ski_run_id, ski_run_level_id) values (4,1);
 INSERT INTO ski_run_ski_run_level (ski_run_id, ski_run_level_id) values (5,2);
 INSERT INTO ski_run_ski_run_level (ski_run_id, ski_run_level_id) values (6,2);
+INSERT INTO ski_run_ski_run_level (ski_run_id, ski_run_level_id) values (7,1);
+INSERT INTO ski_run_ski_run_level (ski_run_id, ski_run_level_id) values (8,1);
 
 
 
