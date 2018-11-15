@@ -55,6 +55,9 @@ public class SearchFragmentAdapter extends RecyclerView.Adapter<SearchFragmentAd
     public void onBindViewHolder(@NonNull SearchFragmentAdapter.SearchViewHolder searchViewHolder, int i) {
         final NearbyResort resort = resorts.get(i);
         searchViewHolder.bindData(resort);
+        if (searchViewHolder.binding != null) {
+            StaticMethods.setMiniature(context,resort.getImage(), searchViewHolder.binding.miniature);
+        }
         searchViewHolder.binding.cardSearch.setOnClickListener(v -> {
             ListInBottomSheetAdapter adapter = new ListInBottomSheetAdapter(resort.getSkiRuns(),context);
             binding.includeBS.listinbottomsheet.setAdapter(adapter);
