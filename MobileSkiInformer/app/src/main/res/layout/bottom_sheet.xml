@@ -82,6 +82,16 @@
                     android:textColor="#444"
                     android:textSize="10dp"
                     android:textStyle="bold" />
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="#000"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:text="PROCEED PAYMENT"
+                    android:textColor="#fff" />
+
                 <TextView
                     android:id="@+id/slopesText"
                     android:layout_width="match_parent"
@@ -92,14 +102,6 @@
                     android:textStyle="bold" />
 
 
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:background="#000"
-                    android:foreground="?attr/selectableItemBackground"
-                    android:text="PROCEED PAYMENT"
-                    android:textColor="#fff" />
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/listinbottomsheet"
