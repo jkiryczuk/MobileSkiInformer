@@ -22,6 +22,7 @@ import jkiryczuk.pl.mobileskiinformer.databinding.FragmentNearbyBinding;
 import jkiryczuk.pl.mobileskiinformer.databinding.FragmentSearchBinding;
 import jkiryczuk.pl.mobileskiinformer.databinding.NearbyModelBinding;
 import jkiryczuk.pl.mobileskiinformer.model.NearbyResort;
+import jkiryczuk.pl.mobileskiinformer.ui.adapter.ListInBottomSheetAdapter;
 import jkiryczuk.pl.mobileskiinformer.ui.nearbyscreen.NearbyFragment;
 import jkiryczuk.pl.mobileskiinformer.utils.StaticMethods;
 
@@ -63,20 +64,21 @@ public class NearbyAdapter extends RecyclerView.Adapter<NearbyAdapter.NearbyView
         if (nearbyViewHolder.binding != null) {
             StaticMethods.setMiniature(context,resort.getImage(), nearbyViewHolder.binding.miniature);
         }
-        nearbyViewHolder.binding.cardNearby.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                toggleBottomSheet(resort);
-            }
+        nearbyViewHolder.binding.cardNearby.setOnClickListener(view -> {
+            ListInBottomSheetAdapter adapter = new ListInBottomSheetAdapter(resort.getSkiRuns(),context);
+            binding.includeBS.listinbottomsheet.setAdapter(adapter);
+            toggleBottomSheet(resort,adapter);
         });
     }
 
-    public void toggleBottomSheet(NearbyResort response) {
+    public void toggleBottomSheet(NearbyResort response, ListInBottomSheetAdapter adapter) {
         if (sheetBehavior.getState() != BottomSheetBehavior.STATE_EXPANDED) {
             sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
             binding.includeBS.nameOfResort.setText(response.getName());
             StaticMethods.setMiniature(context,response.getImage(),binding.includeBS.obrazek);
-
+            binding.includeBS.setItem(response);
+            binding.includeBS.counterSlopes.setText("Ilość stoków: "+String.valueOf(response.getSkiRuns().size()));
+            adapter.setSkiRuns(response.getSkiRuns());
         } else {
             sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
         }
