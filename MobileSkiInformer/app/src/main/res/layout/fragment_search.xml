@@ -18,7 +18,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_behavior="android.support.design.widget.BottomSheetBehavior"
-            tools:context=".ui.searchscreen.SearchFragment">
+            tools:context=".ui.searchscreen.SearchFragment"
+            >
 
             <android.support.v4.widget.SwipeRefreshLayout
                 android:id="@+id/swipeNearbyResortsContainer"
@@ -58,6 +59,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:overScrollMode="never"
+                            app:layout_behavior="android.support.design.widget.BottomSheetBehavior"
+
                             app:layoutManager="android.support.v7.widget.LinearLayoutManager"
                             tools:listitem="@layout/search_item"
                             android:layout_below="@+id/border"/>
@@ -69,7 +72,6 @@
                         app:isErrorVisible="@{viewModel.isErrorVisible}" />
 
                 </FrameLayout>
-                <!-- Adding bottom sheet after main content -->
 
             </android.support.v4.widget.SwipeRefreshLayout>
 

@@ -57,6 +57,7 @@ public class NearbyFragment extends Fragment {
     protected Location mLastLocation;
     BottomSheetBehavior sheetBehavior;
     LinearLayout layout;
+    FragmentNearbyBinding binding;
 
     @Override
     public void onResume() {
@@ -69,7 +70,7 @@ public class NearbyFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         AndroidSupportInjection.inject(this);
-        FragmentNearbyBinding binding = FragmentNearbyBinding.inflate(inflater, container, false);
+         binding = FragmentNearbyBinding.inflate(inflater, container, false);
         binding.setViewModel(viewModel);
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this.getActivity());
         if (!checkPermissions()) {
@@ -160,8 +161,8 @@ public class NearbyFragment extends Fragment {
             adapter.clear();
             if(mLastLocation != null){
                 getLastLocation();
+                viewModel.initializeAllResortsData();
             }
-            viewModel.initializeAllResortsData();
         });
     }
 
@@ -174,6 +175,7 @@ public class NearbyFragment extends Fragment {
                         if (task.getResult() == null) {
                             viewModel.showError(true);
                             viewModel.setRefreshing(true);
+                            binding.nearbyResortsList.setVisibility(View.GONE);
                             Log.e(TAG, "TASK IS NULL ");
                         }
                         if (task.isSuccessful() && task.getResult() != null) {
