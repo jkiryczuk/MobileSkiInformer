@@ -50,4 +50,13 @@ public class BindingAdapters {
                 .into(imageView);
     }
 
+    @BindingAdapter("favouriteState")
+    public static void favouriteState(ImageView imageView, boolean state){
+        if(!state){
+            imageView.setImageResource(R.drawable.white);
+        } else {
+            imageView.setImageResource(R.drawable.gold);
+        }
+
+    }
 }

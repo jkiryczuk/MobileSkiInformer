@@ -61,6 +61,7 @@ public class NearbyAdapter extends RecyclerView.Adapter<NearbyAdapter.NearbyView
     public void onBindViewHolder(@NonNull NearbyViewHolder nearbyViewHolder, int i) {
         final NearbyResort resort = resorts.get(i);
         nearbyViewHolder.bindData(resort);
+        nearbyViewHolder.binding.counterSlopes.setText("Liczba stoków: "+resort.getSkiRuns().size());
         if (nearbyViewHolder.binding != null) {
             StaticMethods.setMiniature(context,resort.getImage(), nearbyViewHolder.binding.miniature);
         }
