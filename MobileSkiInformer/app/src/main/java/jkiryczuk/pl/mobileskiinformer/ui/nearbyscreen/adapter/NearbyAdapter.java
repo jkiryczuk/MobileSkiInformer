@@ -62,6 +62,17 @@ public class NearbyAdapter extends RecyclerView.Adapter<NearbyAdapter.NearbyView
         final NearbyResort resort = resorts.get(i);
         nearbyViewHolder.bindData(resort);
         nearbyViewHolder.binding.counterSlopes.setText("Liczba stoków: "+resort.getSkiRuns().size());
+        nearbyViewHolder.binding.starN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(resort.isFavourite())
+                    resort.setFavourite(false);
+                else resort.setFavourite(true);
+                notifyDataSetChanged();
+            }
+
+        });
+
         if (nearbyViewHolder.binding != null) {
             StaticMethods.setMiniature(context,resort.getImage(), nearbyViewHolder.binding.miniature);
         }

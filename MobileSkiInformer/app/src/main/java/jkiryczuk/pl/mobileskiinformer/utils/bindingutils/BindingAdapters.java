@@ -5,6 +5,7 @@ import android.databinding.BindingAdapter;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -52,6 +53,7 @@ public class BindingAdapters {
 
     @BindingAdapter("favouriteState")
     public static void favouriteState(ImageView imageView, boolean state){
+        Log.e("DUPA","DUPA");
         if(!state){
             imageView.setImageResource(R.drawable.white);
         } else {

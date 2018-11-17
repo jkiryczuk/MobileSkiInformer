@@ -5,6 +5,7 @@ import android.databinding.DataBindingUtil;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,6 +57,16 @@ public class SearchFragmentAdapter extends RecyclerView.Adapter<SearchFragmentAd
         final NearbyResort resort = resorts.get(i);
         searchViewHolder.bindData(resort);
         searchViewHolder.binding.counterSlopes.setText("Liczba stoków: "+resort.getSkiRuns().size());
+        searchViewHolder.binding.starS.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(resort.isFavourite())
+                resort.setFavourite(false);
+                else resort.setFavourite(true);
+            notifyDataSetChanged();
+            }
+
+        });
         if (searchViewHolder.binding != null) {
             StaticMethods.setMiniature(context,resort.getImage(), searchViewHolder.binding.miniature);
         }
