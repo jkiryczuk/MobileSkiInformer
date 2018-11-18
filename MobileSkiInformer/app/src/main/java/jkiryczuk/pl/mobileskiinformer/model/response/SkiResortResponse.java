@@ -14,5 +14,8 @@ public class SkiResortResponse {
     private float longitude;
     private String borough;
     private String image;
+    private String phonenumber;
+    private String website;
+    private String mapadress;
     private List<SkiRunResponse> skiRuns;
 }

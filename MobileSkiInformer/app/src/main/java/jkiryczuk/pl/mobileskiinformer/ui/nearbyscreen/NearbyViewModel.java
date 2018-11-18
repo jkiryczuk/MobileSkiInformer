@@ -43,6 +43,9 @@ public class NearbyViewModel extends ViewModel {
                     resortsResponseList.get(i).getLatitude(),
                     resortsResponseList.get(i).getLongitude(),
                     resortsResponseList.get(i).getBorough(),
+                    resortsResponseList.get(i).getPhonenumber(),
+                    resortsResponseList.get(i).getWebsite(),
+                    resortsResponseList.get(i).getMapadress(),
                     resortsResponseList.get(i).getImage(),
                     0, false, resortsResponseList.get(i).getSkiRuns()));
         }

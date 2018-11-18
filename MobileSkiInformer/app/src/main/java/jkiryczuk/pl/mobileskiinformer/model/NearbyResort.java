@@ -17,6 +17,9 @@ public class NearbyResort {
     private float latitude;
     private float longitude;
     private String borough;
+    private String phonenumber;
+    private String website;
+    private String mapadress;
     private String image;
     private float distance = 0;
     private boolean favourite = false;
@@ -30,6 +33,9 @@ public class NearbyResort {
         this.latitude = response.getLatitude();
         this.longitude = response.getLongitude();
         this.borough = response.getBorough();
+        this.phonenumber= response.getPhonenumber();
+        this.website = response.getWebsite();
+        this.mapadress = response.getMapadress();
         this.image = response.getImage();
         this.skiRuns = response.getSkiRuns();
     }
