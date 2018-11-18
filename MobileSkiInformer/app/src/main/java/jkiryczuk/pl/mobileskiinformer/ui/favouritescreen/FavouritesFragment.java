@@ -45,9 +45,24 @@ public class FavouritesFragment extends Fragment {
         setVisibleObjects();
         adapter = new FavsListAdapter(favsList,getContext(),sheetBehavior,binding);
         binding.favsrecycler.setAdapter(adapter);
+        setSheetBehaviourCallback();
+        sheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
         return binding.getRoot();
     }
+    private void setSheetBehaviourCallback() {
+        sheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+            @Override
+            public void onStateChanged(@NonNull View bottomSheet, int newState) {
+                if (newState == BottomSheetBehavior.STATE_DRAGGING) {
+                    sheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+                }
+            }
 
+            @Override
+            public void onSlide(@NonNull View bottomSheet, float slideOffset) {
+            }
+        });
+    }
     public void setVisibleObjects() {
         if (favsList.size() == 0) {
             binding.promptNoFavs.setVisibility(View.VISIBLE);

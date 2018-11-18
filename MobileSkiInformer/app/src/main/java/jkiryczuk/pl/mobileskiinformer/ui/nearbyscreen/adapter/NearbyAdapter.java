@@ -112,7 +112,7 @@ public class NearbyAdapter extends RecyclerView.Adapter<NearbyAdapter.NearbyView
             binding.includeBS.counterSlopes.setText("Ilość stoków: "+String.valueOf(response.getSkiRuns().size()));
             adapter.setSkiRuns(response.getSkiRuns());
         } else {
-            sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+            sheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
         }
     }
 

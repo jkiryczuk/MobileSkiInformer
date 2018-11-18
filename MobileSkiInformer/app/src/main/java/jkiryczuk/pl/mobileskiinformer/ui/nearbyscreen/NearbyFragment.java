@@ -85,6 +85,7 @@ public class NearbyFragment extends Fragment {
         adapter = new NearbyAdapter(resorts, getContext(), sheetBehavior, binding);
         binding.nearbyResortsList.setAdapter(adapter);
         subscribeUi();
+        sheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
         setupSwipeLayoutListener();
         favsResort = ListOfFavourites.getInstance().getResorts();
         viewModel.setRefreshing(true);
@@ -101,25 +102,12 @@ public class NearbyFragment extends Fragment {
         sheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
             @Override
             public void onStateChanged(@NonNull View bottomSheet, int newState) {
-                switch (newState) {
-                    case BottomSheetBehavior.STATE_HIDDEN:
-                        break;
-                    case BottomSheetBehavior.STATE_EXPANDED: {
-                    }
-                    break;
-                    case BottomSheetBehavior.STATE_COLLAPSED: {
-                    }
-                    break;
-                    case BottomSheetBehavior.STATE_DRAGGING:
-                        break;
-                    case BottomSheetBehavior.STATE_SETTLING:
-                        break;
+                if (newState == BottomSheetBehavior.STATE_DRAGGING) {
+                    sheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
                 }
             }
-
             @Override
             public void onSlide(@NonNull View bottomSheet, float slideOffset) {
-
             }
         });
     }

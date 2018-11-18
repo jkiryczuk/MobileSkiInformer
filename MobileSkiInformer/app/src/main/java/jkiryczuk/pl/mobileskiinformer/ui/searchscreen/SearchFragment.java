@@ -59,6 +59,7 @@ public class SearchFragment extends Fragment {
         adapter = new SearchFragmentAdapter(resorts2, getContext(), sheetBehavior, binding);
         binding.resortsList.setAdapter(adapter);
         addTextListener();
+        sheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
         subscribeUi();
         setupSwipeLayoutListener();
         favs = ListOfFavourites.getInstance().getResorts();
@@ -73,25 +74,13 @@ public class SearchFragment extends Fragment {
         sheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
             @Override
             public void onStateChanged(@NonNull View bottomSheet, int newState) {
-                switch (newState) {
-                    case BottomSheetBehavior.STATE_HIDDEN:
-                        break;
-                    case BottomSheetBehavior.STATE_EXPANDED: {
-                    }
-                    break;
-                    case BottomSheetBehavior.STATE_COLLAPSED: {
-                    }
-                    break;
-                    case BottomSheetBehavior.STATE_DRAGGING:
-                        break;
-                    case BottomSheetBehavior.STATE_SETTLING:
-                        break;
+                if (newState == BottomSheetBehavior.STATE_DRAGGING) {
+                    sheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
                 }
             }
 
             @Override
             public void onSlide(@NonNull View bottomSheet, float slideOffset) {
-
             }
         });
     }
