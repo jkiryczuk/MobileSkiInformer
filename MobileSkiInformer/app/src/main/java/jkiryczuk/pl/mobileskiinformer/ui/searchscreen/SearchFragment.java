@@ -23,11 +23,13 @@ import javax.inject.Inject;
 import dagger.android.support.AndroidSupportInjection;
 import jkiryczuk.pl.mobileskiinformer.R;
 import jkiryczuk.pl.mobileskiinformer.databinding.FragmentSearchBinding;
+import jkiryczuk.pl.mobileskiinformer.model.ListOfFavourites;
 import jkiryczuk.pl.mobileskiinformer.model.NearbyResort;
 import jkiryczuk.pl.mobileskiinformer.model.Resource;
 import jkiryczuk.pl.mobileskiinformer.model.response.SkiResortResponse;
 import jkiryczuk.pl.mobileskiinformer.ui.nearbyscreen.adapter.NearbyAdapter;
 import jkiryczuk.pl.mobileskiinformer.ui.searchscreen.adapter.SearchFragmentAdapter;
+import jkiryczuk.pl.mobileskiinformer.utils.StaticMethods;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -38,7 +40,7 @@ public class SearchFragment extends Fragment {
     SearchViewModel viewModel;
     private SearchFragmentAdapter adapter;
     private SwipeRefreshLayout swipeRefreshLayout;
-    private final List<SkiResortResponse> resorts = new ArrayList<>();
+    private  List<NearbyResort> favs;
     private final List<NearbyResort> resorts2 = new ArrayList<>();
     BottomSheetBehavior sheetBehavior;
     LinearLayout layout;
@@ -54,17 +56,15 @@ public class SearchFragment extends Fragment {
         sheetBehavior = BottomSheetBehavior.from(layout);
         swipeRefreshLayout = binding.swipeNearbyResortsContainer;
         searchInput = binding.search;
-        adapter = new SearchFragmentAdapter(resorts2, getContext(),sheetBehavior, binding);
+        adapter = new SearchFragmentAdapter(resorts2, getContext(), sheetBehavior, binding);
         binding.resortsList.setAdapter(adapter);
         addTextListener();
         subscribeUi();
         setupSwipeLayoutListener();
-
+        favs = ListOfFavourites.getInstance().getResorts();
         viewModel.setRefreshing(true);
         viewModel.initializeAllResortsData();
         setSheetBehaviourCallback();
-
-
         return binding.getRoot();
 
     }
@@ -147,15 +147,20 @@ public class SearchFragment extends Fragment {
                 return;
             }
             List<SkiResortResponse> resortsResponseList = resource.getData().getResortsList();
-            for( SkiResortResponse response : resortsResponseList) {
+            for (SkiResortResponse response : resortsResponseList) {
                 resorts2.add(new NearbyResort(response));
             }
-           adapter.setResorts(resorts2);
+            StaticMethods.filterList(resorts2, favs);
+            adapter.setResorts(resorts2);
             viewModel.showError(false);
             viewModel.setRefreshing(false);
         });
     }
 
-
-
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        adapter.clear();
+        viewModel.initializeAllResortsData();
+    }
 }

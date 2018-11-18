@@ -42,6 +42,7 @@ import jkiryczuk.pl.mobileskiinformer.model.Resource;
 import jkiryczuk.pl.mobileskiinformer.model.response.SkiResortResponse;
 import jkiryczuk.pl.mobileskiinformer.ui.mainactivity.MainActivity;
 import jkiryczuk.pl.mobileskiinformer.ui.nearbyscreen.adapter.NearbyAdapter;
+import jkiryczuk.pl.mobileskiinformer.utils.StaticMethods;
 
 public class NearbyFragment extends Fragment {
 
@@ -70,7 +71,7 @@ public class NearbyFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         AndroidSupportInjection.inject(this);
-         binding = FragmentNearbyBinding.inflate(inflater, container, false);
+        binding = FragmentNearbyBinding.inflate(inflater, container, false);
         binding.setViewModel(viewModel);
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this.getActivity());
         if (!checkPermissions()) {
@@ -81,16 +82,14 @@ public class NearbyFragment extends Fragment {
         layout = binding.includeBS.bottomSheet;
         sheetBehavior = BottomSheetBehavior.from(layout);
         swipeRefreshLayout = binding.swipeNearbyResortsContainer;
-        adapter = new NearbyAdapter(resorts, getContext(),sheetBehavior,binding);
+        adapter = new NearbyAdapter(resorts, getContext(), sheetBehavior, binding);
         binding.nearbyResortsList.setAdapter(adapter);
         subscribeUi();
         setupSwipeLayoutListener();
+        favsResort = ListOfFavourites.getInstance().getResorts();
         viewModel.setRefreshing(true);
         viewModel.initializeAllResortsData();
         setSheetBehaviourCallback();
-        //TODO: w inne miejsce z logiką
-        favsResort = ListOfFavourites.getInstance().getResorts();
-
         return binding.getRoot();
     }
 
@@ -136,16 +135,14 @@ public class NearbyFragment extends Fragment {
             }
             adapter.clear();
             List<SkiResortResponse> resortsResponseList = resource.getData().getResortsList();
-            viewModel.rewriteList(resortsResponseList,resorts);
+            viewModel.rewriteList(resortsResponseList, resorts);
             if (mLastLocation != null) {
                 calculateNearest(resortsResponseList);
             }
-
+            StaticMethods.filterList(resorts, favsResort);
             adapter.setResorts(resorts);
             viewModel.showError(false);
             viewModel.setRefreshing(false);
-            favsResort.add(resorts.get(0));
-            ListOfFavourites.getInstance().serialize(favsResort);
         });
     }
 
@@ -159,7 +156,7 @@ public class NearbyFragment extends Fragment {
         swipeRefreshLayout.setOnRefreshListener(() -> {
             Log.e(TAG, "REFRESHING");
             adapter.clear();
-            if(mLastLocation != null){
+            if (mLastLocation != null) {
                 getLastLocation();
                 viewModel.initializeAllResortsData();
             }
@@ -169,7 +166,7 @@ public class NearbyFragment extends Fragment {
 
     @SuppressWarnings("MissingPermission")
     private void getLastLocation() {
-        if (checkPermissions()){
+        if (checkPermissions()) {
             mFusedLocationClient.getLastLocation()
                     .addOnCompleteListener(this.getActivity(), task -> {
                         if (task.getResult() == null) {
@@ -193,8 +190,7 @@ public class NearbyFragment extends Fragment {
                             showSnackbar(getString(R.string.no_location_detected));
                         }
                     });
-        }
-        else {
+        } else {
             viewModel.showError(true);
         }
 
@@ -271,6 +267,13 @@ public class NearbyFragment extends Fragment {
                         startActivity(intent);
                     });
         }
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        viewModel.initializeAllResortsData();
+
     }
 }
 

@@ -53,7 +53,6 @@ public class BindingAdapters {
 
     @BindingAdapter("favouriteState")
     public static void favouriteState(ImageView imageView, boolean state){
-        Log.e("DUPA","DUPA");
         if(!state){
             imageView.setImageResource(R.drawable.white);
         } else {

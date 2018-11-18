@@ -26,5 +26,15 @@ public class StaticMethods {
                 .into(miniature);
     }
 
+    public static void filterList(List<NearbyResort> serverResponse, List<NearbyResort> favs){
+        for(NearbyResort response: serverResponse){
+            for (NearbyResort fav : favs){
+                if(response.getId().equals(fav.getId())){
+                        response.setFavourite(true);
+                }
+            }
+        }
+    }
+
 
 }

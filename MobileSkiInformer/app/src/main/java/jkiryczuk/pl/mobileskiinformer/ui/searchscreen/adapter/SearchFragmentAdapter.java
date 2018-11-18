@@ -14,11 +14,13 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jkiryczuk.pl.mobileskiinformer.R;
 import jkiryczuk.pl.mobileskiinformer.databinding.FragmentSearchBinding;
 import jkiryczuk.pl.mobileskiinformer.databinding.SearchItemBinding;
+import jkiryczuk.pl.mobileskiinformer.model.ListOfFavourites;
 import jkiryczuk.pl.mobileskiinformer.model.NearbyResort;
 import jkiryczuk.pl.mobileskiinformer.model.response.SkiResortResponse;
 import jkiryczuk.pl.mobileskiinformer.model.response.SkiRunResponse;
@@ -31,12 +33,14 @@ public class SearchFragmentAdapter extends RecyclerView.Adapter<SearchFragmentAd
     private Context context;
     private BottomSheetBehavior sheetBehavior;
     private FragmentSearchBinding binding;
+    private List<NearbyResort> favs;
 
     public SearchFragmentAdapter(List<NearbyResort> resorts, Context context, BottomSheetBehavior sheetBehavior, FragmentSearchBinding binding) {
         this.resorts = resorts;
         this.context = context;
         this.sheetBehavior = sheetBehavior;
         this.binding = binding;
+        favs = ListOfFavourites.getInstance().getResorts();
     }
 
     public void setResorts(List<NearbyResort> resorts) {
@@ -52,20 +56,33 @@ public class SearchFragmentAdapter extends RecyclerView.Adapter<SearchFragmentAd
         return new SearchFragmentAdapter.SearchViewHolder(view);
     }
 
+    private void deleteFavsItem(long id) {
+        for(int i=0;i<favs.size();i++){
+            if(favs.get(i).getId() == id){
+                favs.remove(i);
+            }
+        }
+    }
+
     @Override
     public void onBindViewHolder(@NonNull SearchFragmentAdapter.SearchViewHolder searchViewHolder, int i) {
         final NearbyResort resort = resorts.get(i);
         searchViewHolder.bindData(resort);
         searchViewHolder.binding.counterSlopes.setText("Liczba stoków: "+resort.getSkiRuns().size());
-        searchViewHolder.binding.starS.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(resort.isFavourite())
+        searchViewHolder.binding.starS.setOnClickListener(view -> {
+            if(resort.isFavourite()) {
                 resort.setFavourite(false);
-                else resort.setFavourite(true);
-            notifyDataSetChanged();
+                deleteFavsItem(resort.getId());
+                ListOfFavourites.getInstance().serialize(favs);
+                notifyDataSetChanged();
             }
-
+            else {
+                resort.setFavourite(true);
+                favs.add(resort);
+                ListOfFavourites.getInstance().serialize(favs);
+                notifyDataSetChanged();
+            }
+        notifyDataSetChanged();
         });
         if (searchViewHolder.binding != null) {
             StaticMethods.setMiniature(context,resort.getImage(), searchViewHolder.binding.miniature);

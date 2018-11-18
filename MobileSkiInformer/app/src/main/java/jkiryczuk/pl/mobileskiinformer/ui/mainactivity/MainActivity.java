@@ -19,6 +19,7 @@ import jkiryczuk.pl.mobileskiinformer.R;
 import jkiryczuk.pl.mobileskiinformer.databinding.ActivityMainBinding;
 import jkiryczuk.pl.mobileskiinformer.model.ListOfFavourites;
 import jkiryczuk.pl.mobileskiinformer.ui.favouritescreen.FavouritesFragment;
+import jkiryczuk.pl.mobileskiinformer.ui.favouritescreen.adapter.FavsListAdapter;
 import jkiryczuk.pl.mobileskiinformer.ui.nearbyscreen.NearbyFragment;
 import jkiryczuk.pl.mobileskiinformer.ui.searchscreen.SearchFragment;
 
@@ -33,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     };
 
 
-    final Fragment fragment1 = new FavouritesFragment();
+    final FavouritesFragment fragment1 = new FavouritesFragment();
     final Fragment fragment2 = new SearchFragment();
     final Fragment fragment3 = new NearbyFragment();
     final FragmentManager fm = getSupportFragmentManager();
@@ -43,19 +44,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
-        viewModel.fetchTestData();
         verifyStoragePermissions(this);
         final ActivityMainBinding binding = DataBindingUtil.setContentView(this,
                 R.layout.activity_main);
         BottomNavigationView navigation = binding.bottomNavigation;
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        ListOfFavourites.getInstance().getResorts();
-//        ListOfFavourites.getInstance().deserialize();
+        ListOfFavourites.getInstance().deserialize();
         fm.beginTransaction().add(R.id.fragmentFrame, fragment3, "3").hide(fragment3).commit();
         fm.beginTransaction().add(R.id.fragmentFrame, fragment2, "2").hide(fragment2).commit();
         fm.beginTransaction().add(R.id.fragmentFrame,fragment1, "1").commit();
         binding.setBinding(viewModel);
-        viewModel.fetchTestData();
         initializeObservers();
     }
 
@@ -94,6 +92,8 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.action_favorites:
                         fm.beginTransaction().hide(active).show(fragment1).commit();
                         active = fragment1;
+                        ListOfFavourites.getInstance().deserialize();
+                        fragment1.setVisibleObjects();
                         return true;
 
                     case R.id.action_search:

@@ -21,6 +21,7 @@ import jkiryczuk.pl.mobileskiinformer.R;
 import jkiryczuk.pl.mobileskiinformer.databinding.FragmentNearbyBinding;
 import jkiryczuk.pl.mobileskiinformer.databinding.FragmentSearchBinding;
 import jkiryczuk.pl.mobileskiinformer.databinding.NearbyModelBinding;
+import jkiryczuk.pl.mobileskiinformer.model.ListOfFavourites;
 import jkiryczuk.pl.mobileskiinformer.model.NearbyResort;
 import jkiryczuk.pl.mobileskiinformer.ui.adapter.ListInBottomSheetAdapter;
 import jkiryczuk.pl.mobileskiinformer.ui.nearbyscreen.NearbyFragment;
@@ -32,6 +33,7 @@ public class NearbyAdapter extends RecyclerView.Adapter<NearbyAdapter.NearbyView
     private Context context;
     private BottomSheetBehavior sheetBehavior;
     private FragmentNearbyBinding binding;
+    private List<NearbyResort> favs;
 
 
     public NearbyAdapter(List<NearbyResort> resorts, Context context, BottomSheetBehavior sheetBehavior, FragmentNearbyBinding binding) {
@@ -40,6 +42,7 @@ public class NearbyAdapter extends RecyclerView.Adapter<NearbyAdapter.NearbyView
         this.context = context;
         this.sheetBehavior = sheetBehavior;
         this.binding = binding;
+        favs = ListOfFavourites.getInstance().getResorts();
         notifyDataSetChanged();
     }
 
@@ -57,6 +60,14 @@ public class NearbyAdapter extends RecyclerView.Adapter<NearbyAdapter.NearbyView
         return new NearbyAdapter.NearbyViewHolder(view);
     }
 
+    private void deleteFavsItem(long id) {
+        for(int i=0;i<favs.size();i++){
+            if(favs.get(i).getId() == id){
+                favs.remove(i);
+            }
+        }
+    }
+
     @Override
     public void onBindViewHolder(@NonNull NearbyViewHolder nearbyViewHolder, int i) {
         final NearbyResort resort = resorts.get(i);
@@ -65,9 +76,18 @@ public class NearbyAdapter extends RecyclerView.Adapter<NearbyAdapter.NearbyView
         nearbyViewHolder.binding.starN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(resort.isFavourite())
+                if(resort.isFavourite()) {
                     resort.setFavourite(false);
-                else resort.setFavourite(true);
+                    deleteFavsItem(resort.getId());
+                    ListOfFavourites.getInstance().serialize(favs);
+                    notifyDataSetChanged();
+                }
+                else {
+                    resort.setFavourite(true);
+                    favs.add(resort);
+                    ListOfFavourites.getInstance().serialize(favs);
+                    notifyDataSetChanged();
+                }
                 notifyDataSetChanged();
             }
 
