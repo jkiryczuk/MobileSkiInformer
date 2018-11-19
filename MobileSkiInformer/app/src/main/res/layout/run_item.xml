@@ -18,6 +18,7 @@
             android:layout_height="100dp">
 
             <LinearLayout
+                android:padding="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
@@ -33,14 +34,14 @@
                     <TextView
                         android:id="@+id/levelPrompt"
                         android:layout_width="0dp"
-                        android:layout_height="20dp"
+                        android:layout_height="match_parent"
                         android:layout_weight="50"
                         android:text="Poziom trudności: " />
 
                     <TextView
                         android:id="@+id/itemLevel"
                         android:layout_width="0dp"
-                        android:layout_height="20dp"
+                        android:layout_height="match_parent"
                         android:layout_gravity="center"
                         android:layout_weight="50"
                         android:text="@{item.skiRunLevel}" />
@@ -54,15 +55,15 @@
 
                     <TextView
                         android:id="@+id/typePrompt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
                         android:layout_weight="50"
                         android:text="Rodzaj: " />
 
                     <TextView
                         android:id="@+id/itemType"
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
                         android:layout_gravity="center"
                         android:layout_weight="50"
                         android:text="@{item.skiRunType}" />
@@ -78,15 +79,15 @@
 
                     <TextView
                         android:id="@+id/lengthPrompt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
                         android:layout_weight="50"
                         android:text="Długość: " />
 
                     <TextView
                         android:id="@+id/itemLength"
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
                         android:layout_gravity="center"
                         android:layout_weight="50"
                         android:text="@{item.length}" />
@@ -94,6 +95,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="10"
@@ -102,21 +104,28 @@
 
                     <TextView
                         android:id="@+id/differencePrompt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
                         android:layout_weight="50"
                         android:text="Przewyższenie: " />
 
                     <TextView
                         android:id="@+id/itemDiffrence"
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
                         android:layout_gravity="center"
                         android:layout_weight="50"
                         android:text="@{item.heightDifference}" />
                 </LinearLayout>
 
             </LinearLayout>
+            <View
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorPrimary"/>
+
         </android.support.v7.widget.CardView>
 
     </RelativeLayout>
