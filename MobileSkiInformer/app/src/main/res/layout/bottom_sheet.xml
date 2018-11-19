@@ -37,31 +37,23 @@
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:padding="1dp"
             android:layout_weight="80"
             android:elevation="10dp"
+            android:padding="1dp"
             app:cardCornerRadius="10dp"
             app:cardUseCompatPadding="true">
 
             <LinearLayout
-                android:padding="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="10dp">
 
                 <TextView
                     android:id="@+id/nameOfResort"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@{item.name}"
-                    android:textColor="#444"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/addressOfResort"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@{item.address}"
                     android:textColor="#444"
                     android:textStyle="bold" />
 
@@ -74,17 +66,26 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/addressOfResort"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{item.address}"
+                    android:textColor="#444"
+                    android:textStyle="bold" />
+
+                <TextView
                     android:id="@+id/counterSlopes"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="#444"
-                    android:textStyle="bold"
-                    android:paddingBottom="5dp"/>
+                    android:textStyle="bold" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
                     android:orientation="horizontal"
+                    android:padding="5dp"
                     android:weightSum="4">
 
                     <ImageButton
@@ -92,29 +93,32 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:src="@drawable/ic_baseline_call_24px"
-                        android:background="@null"/>
+                        android:background="@null"
+                        android:src="@drawable/ic_baseline_call_24px" />
+
                     <ImageButton
                         android:id="@+id/webButton"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:background="@null"
-                        android:src="@drawable/ic_baseline_web_24px"/>
+                        android:src="@drawable/ic_baseline_web_24px" />
+
                     <ImageButton
                         android:id="@+id/mapButton"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:background="@null"
-                        android:src="@drawable/ic_baseline_map_24px"/>
+                        android:src="@drawable/ic_baseline_map_24px" />
+
                     <ImageButton
                         android:id="@+id/navigationButton"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:background="@null"
-                        android:src="@drawable/ic_baseline_navigation_24px"/>
+                        android:src="@drawable/ic_baseline_navigation_24px" />
 
                 </LinearLayout>
 
@@ -122,12 +126,10 @@
                     android:id="@+id/slopesText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="#444"
                     android:paddingBottom="5dp"
-                    android:paddingTop="5dp"
                     android:text="@string/slopes"
+                    android:textColor="#444"
                     android:textStyle="bold" />
-
 
 
                 <android.support.v7.widget.RecyclerView
