@@ -78,7 +78,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="#444"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:paddingBottom="5dp"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -91,24 +92,28 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:src="@drawable/ic_baseline_call_24px"/>
+                        android:src="@drawable/ic_baseline_call_24px"
+                        android:background="@null"/>
                     <ImageButton
                         android:id="@+id/webButton"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
+                        android:background="@null"
                         android:src="@drawable/ic_baseline_web_24px"/>
                     <ImageButton
                         android:id="@+id/mapButton"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
+                        android:background="@null"
                         android:src="@drawable/ic_baseline_map_24px"/>
                     <ImageButton
                         android:id="@+id/navigationButton"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
+                        android:background="@null"
                         android:src="@drawable/ic_baseline_navigation_24px"/>
 
                 </LinearLayout>
@@ -119,6 +124,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="#444"
                     android:paddingBottom="5dp"
+                    android:paddingTop="5dp"
                     android:text="@string/slopes"
                     android:textStyle="bold" />
 
