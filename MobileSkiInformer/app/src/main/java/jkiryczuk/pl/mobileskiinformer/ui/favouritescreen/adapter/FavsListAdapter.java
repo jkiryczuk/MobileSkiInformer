@@ -76,6 +76,16 @@ public class FavsListAdapter extends RecyclerView.Adapter<FavsListAdapter.FavsVi
             sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
             binding.includeBS.setItem(response);
             binding.includeBS.counterSlopes.setText("Ilość stoków: "+String.valueOf(response.getSkiRuns().size()));
+            if(response.getPhonenumber().equals("mock")||response.getPhonenumber().equals("-")){
+                binding.includeBS.callButton.setVisibility(View.GONE);
+            }
+            if(response.getWebsite().equals("mock")||response.getWebsite().equals("-")){
+                binding.includeBS.webButton.setVisibility(View.GONE);
+            }
+            if(response.getMapadress().equals("mock")||response.getMapadress().equals("-")){
+                binding.includeBS.mapButton.setVisibility(View.GONE);
+            }
+
             binding.includeBS.callButton.setOnClickListener(view -> {
                 makeCall(response);
             });
