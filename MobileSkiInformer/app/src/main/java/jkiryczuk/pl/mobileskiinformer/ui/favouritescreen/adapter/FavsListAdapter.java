@@ -10,6 +10,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -65,64 +67,21 @@ public class FavsListAdapter extends RecyclerView.Adapter<FavsListAdapter.FavsVi
         favsViewHolder.binding.cardNearby.setOnClickListener(v -> {
             ListInBottomSheetAdapter adapter = new ListInBottomSheetAdapter(resort.getSkiRuns(), context);
             binding.includeBS.listinbottomsheet.setAdapter(adapter);
-            toggleBottomSheet(resort, adapter);
+            binding.includeBS.setItem(resort);
+            TextView counterSlopes = binding.includeBS.counterSlopes;
+            ImageButton callButton = binding.includeBS.callButton;
+            ImageButton webButton = binding.includeBS.webButton;
+            ImageButton mapButton = binding.includeBS.mapButton;
+            ImageButton navigationButton = binding.includeBS.navigationButton;
+            StaticMethods.toggleBottomSheet(resort, adapter, sheetBehavior, context,counterSlopes,callButton,webButton,mapButton,navigationButton);
 
         });
     }
 
 
-    public void toggleBottomSheet(NearbyResort response, ListInBottomSheetAdapter adapter) {
-        if (sheetBehavior.getState() != BottomSheetBehavior.STATE_EXPANDED) {
-            sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-            binding.includeBS.setItem(response);
-            binding.includeBS.counterSlopes.setText("Ilość stoków: "+String.valueOf(response.getSkiRuns().size()));
-            if(response.getPhonenumber().equals("mock")||response.getPhonenumber().equals("-")){
-                binding.includeBS.callButton.setVisibility(View.GONE);
-            }
-            if(response.getWebsite().equals("mock")||response.getWebsite().equals("-")){
-                binding.includeBS.webButton.setVisibility(View.GONE);
-            }
-            if(response.getMapadress().equals("mock")||response.getMapadress().equals("-")){
-                binding.includeBS.mapButton.setVisibility(View.GONE);
-            }
 
-            binding.includeBS.callButton.setOnClickListener(view -> {
-                makeCall(response);
-            });
-            binding.includeBS.webButton.setOnClickListener(view -> {
-                openSite(response,0);
-            });
-            binding.includeBS.mapButton.setOnClickListener(view -> {
-                openSite(response,1);
-            });
-            binding.includeBS.navigationButton.setOnClickListener(view -> {
-                openMaps(response);
-            });
-            adapter.setSkiRuns(response.getSkiRuns());
-        } else {
-            sheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
-        }
-    }
 
-    public void makeCall(NearbyResort resort){
-        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", resort.getPhonenumber(), null));
-        context.startActivity(intent);
-    }
-    public void openSite(NearbyResort resort, int type){
-        Intent i = new Intent(Intent.ACTION_VIEW);
-        if(type == 0 ){ //is website
-            i.setData(Uri.parse(resort.getWebsite()));
-        } else if (type == 1) {//is map
-            i.setData(Uri.parse(resort.getMapadress()));
-        }
-        context.startActivity(i);
-    }
-    public void openMaps(NearbyResort resort){
-        Uri gmmIntentUri = Uri.parse("geo:0,0?q="+resort.getLatitude()+","+resort.getLongitude());
-        Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
-        mapIntent.setPackage("com.google.android.apps.maps");
-        context.startActivity(mapIntent);
-    }
+
 
     @Override
     public int getItemCount() {
