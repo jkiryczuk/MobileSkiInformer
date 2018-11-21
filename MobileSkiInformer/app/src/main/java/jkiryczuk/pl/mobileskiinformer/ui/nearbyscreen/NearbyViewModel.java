@@ -64,8 +64,7 @@ public class NearbyViewModel extends ViewModel {
     }
 
     public float calculateDistance(Location currentLocation,NearbyResort resort) {
-        Location destination = new Location("destination");
-
+        final Location destination = new Location("destination");
         destination.setLatitude(resort.getLatitude());
         destination.setLongitude(resort.getLongitude());
         return currentLocation.distanceTo(destination);

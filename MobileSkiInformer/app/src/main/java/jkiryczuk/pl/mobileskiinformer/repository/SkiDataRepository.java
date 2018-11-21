@@ -35,13 +35,13 @@ public class SkiDataRepository implements DataRepository {
 
     @Override
     public void getBorough(Long id, MutableLiveData<Resource<BoroughResponse>> liveData) {
-        Call<BoroughResponse> call = service.getBorough(id);
+        final Call<BoroughResponse> call = service.getBorough(id);
         commitNetworkCall(call, liveData);
     }
 
     @Override
     public void getResorts(MutableLiveData<Resource<ResortsList>> liveData) {
-        Call<List<SkiResortResponse>> call = service.getResorts();
+        final Call<List<SkiResortResponse>> call = service.getResorts();
         commitResortscall(call, liveData);
     }
 

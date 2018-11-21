@@ -79,10 +79,6 @@ public class FavsListAdapter extends RecyclerView.Adapter<FavsListAdapter.FavsVi
     }
 
 
-
-
-
-
     @Override
     public int getItemCount() {
         return resorts.size();

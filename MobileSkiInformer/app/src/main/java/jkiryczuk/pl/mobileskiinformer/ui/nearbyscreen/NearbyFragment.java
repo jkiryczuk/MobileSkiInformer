@@ -56,9 +56,9 @@ public class NearbyFragment extends Fragment {
     private static final int REQUEST_PERMISSIONS_REQUEST_CODE = 34;
     private FusedLocationProviderClient mFusedLocationClient;
     protected Location mLastLocation;
-    BottomSheetBehavior sheetBehavior;
-    LinearLayout layout;
-    FragmentNearbyBinding binding;
+    private BottomSheetBehavior sheetBehavior;
+    private LinearLayout layout;
+    private FragmentNearbyBinding binding;
 
     @Override
     public void onResume() {

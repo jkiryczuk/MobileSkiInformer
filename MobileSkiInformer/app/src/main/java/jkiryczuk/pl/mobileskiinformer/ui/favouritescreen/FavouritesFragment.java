@@ -31,8 +31,8 @@ public class FavouritesFragment extends Fragment {
     private List<NearbyResort> favsList;
     private FavsListAdapter adapter;
     private FavouritesFragmentBinding binding;
-    BottomSheetBehavior sheetBehavior;
-    LinearLayout layout;
+    private BottomSheetBehavior sheetBehavior;
+    private LinearLayout layout;
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {

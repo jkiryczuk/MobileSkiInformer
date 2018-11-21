@@ -34,10 +34,10 @@ public class MainActivity extends AppCompatActivity {
     };
 
 
-    final FavouritesFragment fragment1 = new FavouritesFragment();
-    final Fragment fragment2 = new SearchFragment();
-    final Fragment fragment3 = new NearbyFragment();
-    final FragmentManager fm = getSupportFragmentManager();
+    private final FavouritesFragment fragment1 = new FavouritesFragment();
+    private final Fragment fragment2 = new SearchFragment();
+    private final Fragment fragment3 = new NearbyFragment();
+    private final FragmentManager fm = getSupportFragmentManager();
     Fragment active = fragment1;
 
     @Override
@@ -58,11 +58,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public static void verifyStoragePermissions(Activity activity) {
-        // Check if we have write permission
         int permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
 
         if (permission != PackageManager.PERMISSION_GRANTED) {
-            // We don't have permission so prompt the user
             ActivityCompat.requestPermissions(
                     activity,
                     PERMISSIONS_STORAGE,

@@ -16,7 +16,7 @@ import jkiryczuk.pl.mobileskiinformer.model.response.SkiRunResponse;
 
 public class ListInBottomSheetAdapter extends  RecyclerView.Adapter<ListInBottomSheetAdapter.ListInBottomSheetViewHolder> {
 
-    List<SkiRunResponse> skiRuns;
+    private List<SkiRunResponse> skiRuns;
     private Context context;
 
 

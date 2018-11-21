@@ -42,9 +42,9 @@ public class SearchFragment extends Fragment {
     private SwipeRefreshLayout swipeRefreshLayout;
     private  List<NearbyResort> favs;
     private final List<NearbyResort> resorts2 = new ArrayList<>();
-    BottomSheetBehavior sheetBehavior;
-    LinearLayout layout;
-    EditText searchInput;
+    private BottomSheetBehavior sheetBehavior;
+    private LinearLayout layout;
+    private EditText searchInput;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

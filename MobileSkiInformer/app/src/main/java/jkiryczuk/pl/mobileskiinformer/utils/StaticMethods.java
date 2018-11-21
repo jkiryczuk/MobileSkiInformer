@@ -42,7 +42,15 @@ public class StaticMethods {
         }
     }
 
-    public static void toggleBottomSheet(NearbyResort response, ListInBottomSheetAdapter adapter, BottomSheetBehavior sheetBehavior, Context context, TextView counterSlopes, ImageButton callButton, ImageButton webButton, ImageButton mapButton, ImageButton navigationButton) {
+    public static void toggleBottomSheet(NearbyResort response,
+                                         ListInBottomSheetAdapter adapter,
+                                         BottomSheetBehavior sheetBehavior,
+                                         Context context,
+                                         TextView counterSlopes,
+                                         ImageButton callButton,
+                                         ImageButton webButton,
+                                         ImageButton mapButton,
+                                         ImageButton navigationButton) {
         if (sheetBehavior.getState() != BottomSheetBehavior.STATE_EXPANDED) {
             sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
             counterSlopes.setText("Ilość stoków: " + String.valueOf(response.getSkiRuns().size()));
