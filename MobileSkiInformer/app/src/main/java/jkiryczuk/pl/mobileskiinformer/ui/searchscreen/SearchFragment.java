@@ -1,6 +1,5 @@
 package jkiryczuk.pl.mobileskiinformer.ui.searchscreen;
 
-
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomSheetBehavior;
@@ -31,9 +30,6 @@ import jkiryczuk.pl.mobileskiinformer.ui.nearbyscreen.adapter.NearbyAdapter;
 import jkiryczuk.pl.mobileskiinformer.ui.searchscreen.adapter.SearchFragmentAdapter;
 import jkiryczuk.pl.mobileskiinformer.utils.StaticMethods;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class SearchFragment extends Fragment {
 
     @Inject
@@ -58,7 +54,7 @@ public class SearchFragment extends Fragment {
         searchInput = binding.search;
         adapter = new SearchFragmentAdapter(resorts2, getContext(), sheetBehavior, binding);
         binding.resortsList.setAdapter(adapter);
-        addTextListener();
+        viewModel.addTextListener(searchInput,adapter,resorts2);
         sheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
         subscribeUi();
         setupSwipeLayoutListener();
@@ -85,34 +81,7 @@ public class SearchFragment extends Fragment {
         });
     }
 
-    private void addTextListener() {
-        searchInput.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-            }
 
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                charSequence = charSequence.toString().toLowerCase();
-
-                final List<NearbyResort> filteredList = new ArrayList<>();
-
-                for (int x = 0; x < resorts2.size(); x++) {
-
-                    final String text = resorts2.get(x).getName().toLowerCase();
-                    if (text.contains(charSequence)) {
-
-                        filteredList.add(resorts2.get(x));
-                    }
-                }
-                adapter.setResorts(filteredList);
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-            }
-        });
-    }
 
     private void setupSwipeLayoutListener() {
         swipeRefreshLayout.setOnRefreshListener(() -> {
@@ -136,9 +105,7 @@ public class SearchFragment extends Fragment {
                 return;
             }
             List<SkiResortResponse> resortsResponseList = resource.getData().getResortsList();
-            for (SkiResortResponse response : resortsResponseList) {
-                resorts2.add(new NearbyResort(response));
-            }
+            viewModel.convertList(resorts2, resortsResponseList);
             StaticMethods.filterList(resorts2, favs);
             adapter.setResorts(resorts2);
             viewModel.showError(false);
