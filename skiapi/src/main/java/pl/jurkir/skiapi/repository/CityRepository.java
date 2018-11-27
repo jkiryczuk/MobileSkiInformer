@@ -1,0 +1,9 @@
+package pl.jurkir.skiapi.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+import pl.jurkir.skiapi.dao.City;
+
+@Repository
+public interface CityRepository extends JpaRepository<City, Long> {
+}

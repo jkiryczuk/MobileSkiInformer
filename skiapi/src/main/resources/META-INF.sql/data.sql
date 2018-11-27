@@ -133,5 +133,23 @@ INSERT INTO ski_run_ski_run_level (ski_run_id, ski_run_level_id) values (7,1);
 INSERT INTO ski_run_ski_run_level (ski_run_id, ski_run_level_id) values (8,1);
 
 
-
-
+insert into cities (id,name, lat,lng) values (1,'Szczyrk', 49.713985, 19.021715);
+insert into cities (id,name, lat,lng) values (2, 'Białka Tatrzańska', 49.388465, 20.105517);
+insert into cities (id,name, lat,lng) values (3,'Zieleniec',50.335255, 16.389019  );
+insert into cities (id,name, lat,lng) values (4,'Krynica-Zdrój',49.421373, 20.959768  );
+insert into cities (id,name, lat,lng) values (5,'Szklarska Poręba', 50.826712, 15.522470 );
+insert into cities (id,name, lat,lng) values (6,'Zakopane', 49.302384, 19.957672 );
+insert into cities (id,name, lat,lng) values (7,'Jurgów', 49.340832, 20.137201 );
+insert into cities (id,name, lat,lng) values (8,'Żywiec', 49.690090, 19.182398 );
+insert into cities (id,name, lat,lng) values (9,'Nowy Targ',49.476881, 20.031835  );
+insert into cities (id,name, lat,lng) values (10,'Wisła', 49.639253, 18.873622  );
+insert into cities (id,name, lat,lng) values (11,'Świeradów-Zdrój', 50.912522, 15.336654 );
+insert into cities (id,name, lat,lng) values (12,'Puławy', 49.497381, 21.923785 );
+insert into cities (id,name, lat,lng) values (13,'Ustrzyki Dolne', 49.430752, 22.597330 );
+insert into cities (id,name, lat,lng) values (14,'Wrocław',51.107079, 17.034167  );
+insert into cities (id,name, lat,lng) values (15,'Kraków', 50.055803, 19.945360 );
+insert into cities (id,name, lat,lng) values (16,'Krynica Zdrój', 49.418084, 20.955140  );
+insert into cities (id,name, lat,lng) values (17,'Nowy Sącz', 49.617057, 20.714798 );
+insert into cities (id,name, lat,lng) values (18,'Katowice', 50.265759, 19.017791  );
+insert into cities (id,name, lat,lng) values (19,'Wałbrzych', 50.782770, 16.283954  );
+insert into cities (id,name, lat,lng) values (20,'Warszawa', 52.227629, 21.009971 );
