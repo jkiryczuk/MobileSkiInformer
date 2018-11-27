@@ -23,30 +23,6 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:weightSum="40">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="10"
-                    android:orientation="horizontal"
-                    android:weightSum="100">
-
-                    <TextView
-                        android:id="@+id/levelPrompt"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="50"
-                        android:text="Poziom trudności: " />
-
-                    <TextView
-                        android:id="@+id/itemLevel"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:layout_weight="50"
-                        android:text="@{item.skiRunLevel}" />
-                </LinearLayout>
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
@@ -75,47 +51,85 @@
                     android:layout_height="0dp"
                     android:layout_weight="10"
                     android:orientation="horizontal"
-                    android:weightSum="100">
+                    android:weightSum="20">
 
-                    <TextView
-                        android:id="@+id/lengthPrompt"
+                    <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="50"
-                        android:text="Długość: " />
+                        android:layout_weight="10"
+                        android:orientation="horizontal"
+                        android:weightSum="100">
 
-                    <TextView
-                        android:id="@+id/itemLength"
+                        <TextView
+                            android:id="@+id/lengthPrompt"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="50"
+                            android:text="Długość: " />
+
+                        <TextView
+                            android:id="@+id/itemLength"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:layout_weight="50"
+                            android:text="@{item.length}" />
+                    </LinearLayout>
+
+
+                    <LinearLayout
+
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:layout_weight="50"
-                        android:text="@{item.length}" />
+                        android:layout_weight="10"
+                        android:orientation="horizontal"
+                        android:weightSum="100">
+
+                        <TextView
+                            android:id="@+id/differencePrompt"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="80"
+                            android:text="Przewyższenie: " />
+
+                        <TextView
+                            android:id="@+id/itemDiffrence"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:layout_weight="20"
+                            android:text="@{item.heightDifference}" />
+                    </LinearLayout>
+
 
                 </LinearLayout>
-
                 <LinearLayout
-
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="10"
-                    android:orientation="horizontal"
-                    android:weightSum="100">
+                    android:weightSum="20">
 
-                    <TextView
-                        android:id="@+id/differencePrompt"
+                    <ImageView
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="50"
-                        android:text="Przewyższenie: " />
-
-                    <TextView
-                        android:id="@+id/itemDiffrence"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_weight="10"
                         android:layout_gravity="center"
-                        android:layout_weight="50"
-                        android:text="@{item.heightDifference}" />
+                        android:foregroundGravity="center"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitCenter"
+                        app:colorLevel="@{item.skiRunLevel}"
+                        />
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="10"
+                        android:layout_gravity="center"
+                        android:foregroundGravity="center"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitCenter"
+                        app:colorLevel="@{item.skiRunLevel}"
+                        />
+
                 </LinearLayout>
 
             </LinearLayout>

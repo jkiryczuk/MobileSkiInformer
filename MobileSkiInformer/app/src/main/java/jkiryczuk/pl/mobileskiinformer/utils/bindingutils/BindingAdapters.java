@@ -60,4 +60,17 @@ public class BindingAdapters {
         }
 
     }
+
+    @BindingAdapter("colorLevel")
+    public static void changeColorLevel(ImageView imageView, String level){
+        if(level.equals("czerwona")){
+            imageView.setImageResource(R.drawable.czerwony);
+        } else if(level.equals("czarna")){
+            imageView.setImageResource(R.drawable.czarna);
+        } else if(level.equals("zielona")){
+            imageView.setImageResource(
+                    R.drawable.zielona);
+        }
+
+    }
 }
