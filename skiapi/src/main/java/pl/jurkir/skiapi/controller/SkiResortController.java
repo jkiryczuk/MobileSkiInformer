@@ -16,6 +16,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/skiresort")
 public class SkiResortController {
+
     @Autowired
     SkiResortService skiResortService;
 
@@ -63,6 +64,16 @@ public class SkiResortController {
     @RequestMapping(value = "/by/borough/{id}", method = RequestMethod.GET)
     public List<SkiResort> findSkiResortByBorough(@PathVariable("id") Long id) {
         List<pl.jurkir.skiapi.dao.SkiResort> resorts = skiResortService.findSkiResortByBorough(id);
+        List<SkiResort> resortList = new ArrayList<>();
+        for (pl.jurkir.skiapi.dao.SkiResort skiResortDaoObject : resorts) {
+            resortList.add(new SkiResort(skiResortDaoObject));
+        }
+        return resortList;
+    }
+
+    @RequestMapping(value = "/closest/{id}")
+    public List<SkiResort> findClosestResortsToCities(@PathVariable("id") Long cityId) {
+        List<pl.jurkir.skiapi.dao.SkiResort> resorts = skiResortService.findClosesToId(cityId);
         List<SkiResort> resortList = new ArrayList<>();
         for (pl.jurkir.skiapi.dao.SkiResort skiResortDaoObject : resorts) {
             resortList.add(new SkiResort(skiResortDaoObject));
