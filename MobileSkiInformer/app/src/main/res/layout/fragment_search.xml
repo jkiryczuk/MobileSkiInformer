@@ -67,6 +67,18 @@
 
                     </LinearLayout>
 
+                    <Button
+                        android:text="@string/filter"
+                        android:textColor="#FFFFFF"
+                        android:id="@+id/filterBut"
+                        android:layout_width="100dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="bottom|center"
+                        android:layout_marginBottom="2dp"
+                        android:background="@drawable/shape"
+
+                        />
+
                     <include
                         layout="@layout/error_layout"
                         app:isErrorVisible="@{viewModel.isErrorVisible}" />

@@ -53,6 +53,10 @@ public class SearchFragment extends Fragment {
         swipeRefreshLayout = binding.swipeNearbyResortsContainer;
         searchInput = binding.search;
         adapter = new SearchFragmentAdapter(resorts2, getContext(), sheetBehavior, binding);
+        binding.filterBut.setOnClickListener(view -> {
+            BottomSheetFragment bottomSheetFragment = new BottomSheetFragment();
+            bottomSheetFragment.show(getFragmentManager(), bottomSheetFragment.getTag());
+        });
         binding.resortsList.setAdapter(adapter);
         viewModel.addTextListener(searchInput,adapter,resorts2);
         sheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
