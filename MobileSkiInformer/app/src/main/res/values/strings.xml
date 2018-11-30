@@ -19,5 +19,6 @@
     <string name="search">Wyszukaj</string>
     <string name="slopes">Trasy:</string>
     <string name="filter">Filtruj</string>
+    <string name="commit">Zatwierdź</string>
 
 </resources>
