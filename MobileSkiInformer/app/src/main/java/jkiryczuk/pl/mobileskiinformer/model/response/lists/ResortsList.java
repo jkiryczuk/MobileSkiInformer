@@ -1,4 +1,4 @@
-package jkiryczuk.pl.mobileskiinformer.model;
+package jkiryczuk.pl.mobileskiinformer.model.response.lists;
 
 import java.util.List;
 

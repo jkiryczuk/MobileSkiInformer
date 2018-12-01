@@ -9,4 +9,9 @@ public class BoroughResponse {
     private Long id;
     private String name;
     private String county;
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

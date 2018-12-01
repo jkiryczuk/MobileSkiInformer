@@ -3,11 +3,18 @@ package jkiryczuk.pl.mobileskiinformer.ui.searchscreen.filterbottomsheet;
 import android.arch.lifecycle.MutableLiveData;
 import android.databinding.ObservableField;
 
-import jkiryczuk.pl.mobileskiinformer.model.ResortsList;
+import java.util.List;
+
+import jkiryczuk.pl.mobileskiinformer.model.NearbyResort;
+import jkiryczuk.pl.mobileskiinformer.model.response.SkiResortResponse;
+import jkiryczuk.pl.mobileskiinformer.model.response.lists.BoroughsList;
+import jkiryczuk.pl.mobileskiinformer.model.response.lists.CountiesList;
+import jkiryczuk.pl.mobileskiinformer.model.response.lists.ResortsList;
 import jkiryczuk.pl.mobileskiinformer.model.Resource;
 import jkiryczuk.pl.mobileskiinformer.model.response.BoroughResponse;
 import jkiryczuk.pl.mobileskiinformer.model.response.CountyResponse;
 import jkiryczuk.pl.mobileskiinformer.model.response.VoivodeshipResponse;
+import jkiryczuk.pl.mobileskiinformer.model.response.lists.VoivodeshipsList;
 import jkiryczuk.pl.mobileskiinformer.repository.DataRepository;
 import jkiryczuk.pl.mobileskiinformer.utils.sharedprefsutils.SharedPrefs;
 import lombok.Getter;
@@ -16,12 +23,11 @@ public class BottomSheetFilterViewModel {
 
     public final ObservableField<Boolean> isErrorVisible = new ObservableField<>(false);
     public final ObservableField<Boolean> isRefreshing = new ObservableField<>(false);
+    private final MutableLiveData<Resource<VoivodeshipsList>> voivodeshipData;
     @Getter
-    private final MutableLiveData<Resource<VoivodeshipResponse>> voivodeshipData;
+    private final MutableLiveData<Resource<CountiesList>> countyData;
     @Getter
-    private final MutableLiveData<Resource<CountyResponse>> countyData;
-    @Getter
-    private final MutableLiveData<Resource<BoroughResponse>> boroughData;
+    private final MutableLiveData<Resource<BoroughsList>> boroughData;
     @Getter
     private final MutableLiveData<Resource<ResortsList>> resortsData;
 
@@ -39,7 +45,21 @@ public class BottomSheetFilterViewModel {
 
     public void initializeVoivodeships(){
         setRefreshing(true);
-        //TODO repository method
+        repository.getVoivodeships(voivodeshipData);
+    }
+
+    public void fetchCounties(Long id){
+        setRefreshing(true);
+        repository.getCountiesInVoivodeShip(id,countyData);
+    }
+    public void fetchBoroughs(Long id){
+        setRefreshing(true);
+        repository.getBoroughsInCounties(id, boroughData);
+    }
+    public void convertList(List<NearbyResort> resorts2, List<SkiResortResponse> resortsResponseList) {
+        for (SkiResortResponse response : resortsResponseList) {
+            resorts2.add(new NearbyResort(response));
+        }
     }
 
     public void showError(boolean isVisible) {
@@ -48,5 +68,9 @@ public class BottomSheetFilterViewModel {
 
     public void setRefreshing(boolean isVisible) {
         isRefreshing.set(isVisible);
+    }
+
+    public MutableLiveData<Resource<VoivodeshipsList>> getVoivodeshipData() {
+        return voivodeshipData;
     }
 }

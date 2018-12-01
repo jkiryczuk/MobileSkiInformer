@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jkiryczuk.pl.mobileskiinformer.model.NearbyResort;
-import jkiryczuk.pl.mobileskiinformer.model.ResortsList;
+import jkiryczuk.pl.mobileskiinformer.model.response.lists.ResortsList;
 import jkiryczuk.pl.mobileskiinformer.model.Resource;
 import jkiryczuk.pl.mobileskiinformer.model.response.SkiResortResponse;
 import jkiryczuk.pl.mobileskiinformer.repository.DataRepository;

@@ -7,4 +7,9 @@ public class CountyResponse {
     private Long id;
     private String name;
     private String voivodeship;
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }
