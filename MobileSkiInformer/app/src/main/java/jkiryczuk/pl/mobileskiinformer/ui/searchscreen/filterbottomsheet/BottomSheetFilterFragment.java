@@ -1,4 +1,4 @@
-package jkiryczuk.pl.mobileskiinformer.ui.searchscreen;
+package jkiryczuk.pl.mobileskiinformer.ui.searchscreen.filterbottomsheet;
 
 import android.os.Bundle;
 import android.support.design.widget.BottomSheetDialogFragment;
@@ -12,18 +12,22 @@ import android.widget.Spinner;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import jkiryczuk.pl.mobileskiinformer.R;
 import jkiryczuk.pl.mobileskiinformer.databinding.FilterbottomsheetBinding;
 import jkiryczuk.pl.mobileskiinformer.model.NearbyResort;
 
-public class BottomSheetFragment extends BottomSheetDialogFragment implements AdapterView.OnItemSelectedListener {
+public class BottomSheetFilterFragment extends BottomSheetDialogFragment implements AdapterView.OnItemSelectedListener {
 
+    @Inject
+    BottomSheetFilterViewModel viewModel;
     List<NearbyResort> resorts = new ArrayList<>();
     Spinner boroughSpinner;
     Spinner countySpinner;
     Spinner voivodeshipSpinner;
 
-    public BottomSheetFragment() {
+    public BottomSheetFilterFragment() {
         // Required empty public constructor
     }
 

@@ -5,12 +5,9 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
@@ -20,14 +17,13 @@ import java.util.List;
 import javax.inject.Inject;
 
 import dagger.android.support.AndroidSupportInjection;
-import jkiryczuk.pl.mobileskiinformer.R;
 import jkiryczuk.pl.mobileskiinformer.databinding.FragmentSearchBinding;
 import jkiryczuk.pl.mobileskiinformer.model.ListOfFavourites;
 import jkiryczuk.pl.mobileskiinformer.model.NearbyResort;
 import jkiryczuk.pl.mobileskiinformer.model.Resource;
 import jkiryczuk.pl.mobileskiinformer.model.response.SkiResortResponse;
-import jkiryczuk.pl.mobileskiinformer.ui.nearbyscreen.adapter.NearbyAdapter;
 import jkiryczuk.pl.mobileskiinformer.ui.searchscreen.adapter.SearchFragmentAdapter;
+import jkiryczuk.pl.mobileskiinformer.ui.searchscreen.filterbottomsheet.BottomSheetFilterFragment;
 import jkiryczuk.pl.mobileskiinformer.utils.StaticMethods;
 
 public class SearchFragment extends Fragment {
@@ -54,8 +50,8 @@ public class SearchFragment extends Fragment {
         searchInput = binding.search;
         adapter = new SearchFragmentAdapter(resorts2, getContext(), sheetBehavior, binding);
         binding.filterBut.setOnClickListener(view -> {
-            BottomSheetFragment bottomSheetFragment = new BottomSheetFragment();
-            bottomSheetFragment.show(getFragmentManager(), bottomSheetFragment.getTag());
+            BottomSheetFilterFragment bottomSheetFilterFragment = new BottomSheetFilterFragment();
+            bottomSheetFilterFragment.show(getFragmentManager(), bottomSheetFilterFragment.getTag());
         });
         binding.resortsList.setAdapter(adapter);
         viewModel.addTextListener(searchInput,adapter,resorts2);
