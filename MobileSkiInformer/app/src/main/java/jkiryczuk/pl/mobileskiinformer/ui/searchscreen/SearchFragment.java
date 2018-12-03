@@ -28,7 +28,7 @@ import jkiryczuk.pl.mobileskiinformer.utils.StaticMethods;
 import lombok.Getter;
 import lombok.Setter;
 
-public class SearchFragment extends Fragment {
+public class SearchFragment extends Fragment  implements Connector{
 
     @Inject
     SearchViewModel viewModel;
@@ -40,6 +40,7 @@ public class SearchFragment extends Fragment {
     private BottomSheetBehavior sheetBehavior;
     private LinearLayout layout;
     private EditText searchInput;
+    private Connector callback;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -52,10 +53,12 @@ public class SearchFragment extends Fragment {
         swipeRefreshLayout = binding.swipeNearbyResortsContainer;
         searchInput = binding.search;
         adapter = new SearchFragmentAdapter(resorts2, getContext(), sheetBehavior, binding);
+        callback=this;
         binding.filterBut.setOnClickListener(view -> {
-            BottomSheetFilterFragment bottomSheetFilterFragment = new BottomSheetFilterFragment();
+            BottomSheetFilterFragment bottomSheetFilterFragment = new BottomSheetFilterFragment(callback);
             bottomSheetFilterFragment.show(getFragmentManager(), bottomSheetFilterFragment.getTag());
         });
+
         binding.resortsList.setAdapter(adapter);
         viewModel.addTextListener(searchInput,adapter,resorts2);
         sheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
@@ -126,6 +129,13 @@ public class SearchFragment extends Fragment {
     public void setResorts2(List<NearbyResort> resorts2) {
         this.resorts2 = resorts2;
         adapter.setResorts(resorts2);
+        adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void callbackFetchData(List<NearbyResort> date) {
+        adapter.clear();
+        adapter.setResorts(date);
         adapter.notifyDataSetChanged();
     }
 }

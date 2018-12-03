@@ -73,4 +73,16 @@ public class BottomSheetFilterViewModel {
     public MutableLiveData<Resource<VoivodeshipsList>> getVoivodeshipData() {
         return voivodeshipData;
     }
+
+    public void getResortsByVoivodeships(Long id) {
+        repository.getResortsInVoivodeship(id,resortsData);
+    }
+
+    public void getResortsByCounty(Long id) {
+        repository.getResortsInCounty(id,resortsData);
+    }
+
+    public void getResortsByBorough(Long id) {
+        repository.getResortsInBorough(id,resortsData);
+    }
 }

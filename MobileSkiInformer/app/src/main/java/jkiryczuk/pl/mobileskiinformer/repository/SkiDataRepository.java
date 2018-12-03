@@ -69,6 +69,24 @@ public class SkiDataRepository implements DataRepository {
         commitCountiesCall(call,liveData);
     }
 
+    @Override
+    public void getResortsInBorough(Long id, MutableLiveData<Resource<ResortsList>> liveData) {
+        final Call<List<SkiResortResponse>> call = service.getResortsInBorough(id);
+        commitResortscall(call, liveData);
+    }
+
+    @Override
+    public void getResortsInCounty(Long id, MutableLiveData<Resource<ResortsList>> liveData) {
+        final Call<List<SkiResortResponse>> call = service.getResortsInCounty(id);
+        commitResortscall(call, liveData);
+    }
+
+    @Override
+    public void getResortsInVoivodeship(Long id, MutableLiveData<Resource<ResortsList>> liveData) {
+        final Call<List<SkiResortResponse>> call = service.getResortsInVoivodeship(id);
+        commitResortscall(call, liveData);
+    }
+
     private void commitVoivodeshipCall(Call<List<VoivodeshipResponse>> call, MutableLiveData<Resource<VoivodeshipsList>> liveData) {
         call.enqueue(new Callback<List<VoivodeshipResponse>>() {
             @Override

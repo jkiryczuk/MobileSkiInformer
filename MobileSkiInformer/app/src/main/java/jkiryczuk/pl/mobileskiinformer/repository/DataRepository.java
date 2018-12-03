@@ -17,9 +17,16 @@ public interface DataRepository {
 
     void getResorts(final MutableLiveData<Resource<ResortsList>> liveData);
 
-    void getBoroughsInCounties(Long countyId,final MutableLiveData<Resource<BoroughsList>> liveData);
+    void getBoroughsInCounties(Long countyId, final MutableLiveData<Resource<BoroughsList>> liveData);
 
     void getVoivodeships(final MutableLiveData<Resource<VoivodeshipsList>> liveData);
 
-    void getCountiesInVoivodeShip(Long voivodeshipId,final MutableLiveData<Resource<CountiesList>> liveData);
+    void getCountiesInVoivodeShip(Long voivodeshipId, final MutableLiveData<Resource<CountiesList>> liveData);
+
+    void getResortsInBorough(Long id, final MutableLiveData<Resource<ResortsList>> liveData);
+
+    void getResortsInCounty(Long id,final MutableLiveData<Resource<ResortsList>> liveData);
+
+    void getResortsInVoivodeship(Long id, final MutableLiveData<Resource<ResortsList>> liveData);
+
 }

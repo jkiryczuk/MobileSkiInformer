@@ -1,5 +1,8 @@
 package jkiryczuk.pl.mobileskiinformer.ui.searchscreen.filterbottomsheet;
 
+import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.widget.BottomSheetDialogFragment;
@@ -26,13 +29,16 @@ import jkiryczuk.pl.mobileskiinformer.model.Resource;
 import jkiryczuk.pl.mobileskiinformer.model.response.BoroughResponse;
 import jkiryczuk.pl.mobileskiinformer.model.response.CountyResponse;
 import jkiryczuk.pl.mobileskiinformer.model.response.VoivodeshipResponse;
-import jkiryczuk.pl.mobileskiinformer.ui.searchscreen.SearchFragment;
+import jkiryczuk.pl.mobileskiinformer.ui.searchscreen.Connector;
+import jkiryczuk.pl.mobileskiinformer.utils.StaticMethods;
 
+
+@SuppressLint("ValidFragment")
 public class BottomSheetFilterFragment extends BottomSheetDialogFragment implements AdapterView.OnItemSelectedListener {
-
 
     @Inject
     BottomSheetFilterViewModel viewModel;
+    private final Connector callback;
     List<NearbyResort> resorts = new ArrayList<>();
     List<VoivodeshipResponse> voivodeships = new ArrayList<>();
     List<CountyResponse> counties = new ArrayList<>();
@@ -47,8 +53,9 @@ public class BottomSheetFilterFragment extends BottomSheetDialogFragment impleme
     ArrayAdapter<String> levelAdapter;
     FilterbottomsheetBinding binding;
 
-    public BottomSheetFilterFragment() {
-        // Required empty public constructor
+    @SuppressLint("ValidFragment")
+    public BottomSheetFilterFragment(Connector callback) {
+        this.callback =callback;
     }
 
 
@@ -74,6 +81,7 @@ public class BottomSheetFilterFragment extends BottomSheetDialogFragment impleme
         levels.add(Constants.VOIVODESHIPS);
         levels.add(Constants.COUNTIES);
         levels.add(Constants.BOROUGHS);
+//        binding.spinnerConfBut.setOnClickListener(view -> callback.callbackFetchData(resorts));
         levelAdapter = new ArrayAdapter<String>(this.getContext(), android.R.layout.simple_spinner_item, levels);
         levelAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         levelSpinner.setAdapter(levelAdapter);
@@ -110,27 +118,6 @@ public class BottomSheetFilterFragment extends BottomSheetDialogFragment impleme
         });
     }
 
-    private void setupSpinners(Spinner boroughSpinner, Spinner countySpinner, Spinner voivodeshipSpinner) {
-        // Spinner click listener
-        boroughSpinner.setOnItemSelectedListener(this);
-        countySpinner.setOnItemSelectedListener(this);
-        voivodeshipSpinner.setOnItemSelectedListener(this);
-
-        // Creating adapter for spinner
-        voivodeshipsAdapter = new ArrayAdapter<VoivodeshipResponse>(this.getContext(), android.R.layout.simple_spinner_item, voivodeships);
-        countyAdapter = new ArrayAdapter<CountyResponse>(this.getContext(), android.R.layout.simple_spinner_item, counties);
-        boroughAdapter = new ArrayAdapter<BoroughResponse>(this.getContext(), android.R.layout.simple_spinner_item, boroughs);
-        // Drop down layout style - list view with radio button
-        voivodeshipsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        countyAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        boroughAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        // attaching data adapter to spinner
-        voivodeshipSpinner.setAdapter(voivodeshipsAdapter);
-        countySpinner.setAdapter(countyAdapter);
-        boroughSpinner.setAdapter(boroughAdapter);
-    }
-
     private void observerGetSkiResortsResult() {
         viewModel.getResortsData().observe(this, resource -> {
             if (resource == null
@@ -140,7 +127,9 @@ public class BottomSheetFilterFragment extends BottomSheetDialogFragment impleme
                 viewModel.setRefreshing(false);
                 return;
             }
-            //todo set for searchfragment
+            List<NearbyResort> list = new ArrayList<>();
+            viewModel.convertList(list,resource.getData().getResortsList());
+            callback.callbackFetchData(list);
         });
     }
 
@@ -215,25 +204,25 @@ public class BottomSheetFilterFragment extends BottomSheetDialogFragment impleme
                 }
                 break;
             case R.id.voivodeship_spinner:
+                VoivodeshipResponse item = voivodeshipsAdapter.getItem(i);
                 if (!level.equals(Constants.VOIVODESHIPS)) {
-                    VoivodeshipResponse item = voivodeshipsAdapter.getItem(i);
                     viewModel.fetchCounties(item.getId());
                 } else {
-                    //TODO fetch all from voivodeship
+                    viewModel.getResortsByVoivodeships(item.getId());
                 }
                 break;
             case R.id.county_spinner:
+                CountyResponse county = countyAdapter.getItem(i);
                 if (level.equals(Constants.BOROUGHS)) {
-                    CountyResponse county = countyAdapter.getItem(i);
                     viewModel.fetchBoroughs(county.getId());
                 } else if (levelAdapter.getItem(i).equals(Constants.COUNTIES)) {
-                    //TODO Fetch resorts from server in county
+                    viewModel.getResortsByCounty(county.getId());
                 }
                 break;
             case R.id.borough_spinner:
                 if (level.equals(Constants.BOROUGHS)) {
                     BoroughResponse borough = boroughAdapter.getItem(i);
-
+                    viewModel.getResortsByBorough(borough.getId());
                 }
                 break;
             default:
