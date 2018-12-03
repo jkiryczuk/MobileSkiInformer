@@ -25,6 +25,8 @@ import jkiryczuk.pl.mobileskiinformer.model.response.SkiResortResponse;
 import jkiryczuk.pl.mobileskiinformer.ui.searchscreen.adapter.SearchFragmentAdapter;
 import jkiryczuk.pl.mobileskiinformer.ui.searchscreen.filterbottomsheet.BottomSheetFilterFragment;
 import jkiryczuk.pl.mobileskiinformer.utils.StaticMethods;
+import lombok.Getter;
+import lombok.Setter;
 
 public class SearchFragment extends Fragment {
 
@@ -33,7 +35,8 @@ public class SearchFragment extends Fragment {
     private SearchFragmentAdapter adapter;
     private SwipeRefreshLayout swipeRefreshLayout;
     private  List<NearbyResort> favs;
-    private final List<NearbyResort> resorts2 = new ArrayList<>();
+    @Getter
+    private List<NearbyResort> resorts2 = new ArrayList<>();
     private BottomSheetBehavior sheetBehavior;
     private LinearLayout layout;
     private EditText searchInput;
@@ -118,5 +121,11 @@ public class SearchFragment extends Fragment {
         super.onHiddenChanged(hidden);
         adapter.clear();
         viewModel.initializeAllResortsData();
+    }
+
+    public void setResorts2(List<NearbyResort> resorts2) {
+        this.resorts2 = resorts2;
+        adapter.setResorts(resorts2);
+        adapter.notifyDataSetChanged();
     }
 }

@@ -16,6 +16,7 @@ import jkiryczuk.pl.mobileskiinformer.model.response.SkiResortResponse;
 import jkiryczuk.pl.mobileskiinformer.repository.DataRepository;
 import jkiryczuk.pl.mobileskiinformer.ui.searchscreen.adapter.SearchFragmentAdapter;
 import jkiryczuk.pl.mobileskiinformer.utils.sharedprefsutils.SharedPrefs;
+import lombok.Setter;
 
 public class SearchViewModel {
 
@@ -32,6 +33,7 @@ public class SearchViewModel {
         this.resortsData = new MutableLiveData<>();
     }
 
+
     public void initializeAllResortsData() {
         setRefreshing(true);
         repository.getResorts(resortsData);
@@ -40,6 +42,7 @@ public class SearchViewModel {
     public MutableLiveData<Resource<ResortsList>> getResortsData() {
         return resortsData;
     }
+
 
     public void showError(boolean isVisible) {
         isErrorVisible.set(isVisible);
