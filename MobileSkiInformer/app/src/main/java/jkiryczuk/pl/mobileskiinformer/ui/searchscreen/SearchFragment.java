@@ -134,6 +134,10 @@ public class SearchFragment extends Fragment  implements Connector{
 
     @Override
     public void callbackFetchData(List<NearbyResort> date) {
+        StaticMethods.filterList(date, favs);
+
+        viewModel.showError(false);
+        viewModel.setRefreshing(false);
         adapter.clear();
         adapter.setResorts(date);
         adapter.notifyDataSetChanged();

@@ -50,6 +50,16 @@
                         layout="@layout/error_layout"
                         app:isErrorVisible="@{viewModel.isErrorVisible}" />
 
+                    <android.support.design.widget.FloatingActionButton
+                        android:id="@+id/fab"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_baseline_add_24px"
+                        android:layout_gravity="bottom|end"
+                        app:backgroundTint="@color/colorPrimary"
+                        app:elevation="6dp"
+                        android:layout_margin="5dp"
+                        app:pressedTranslationZ="12dp"/>
                 </FrameLayout>
 
             </android.support.v4.widget.SwipeRefreshLayout>

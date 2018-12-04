@@ -76,10 +76,6 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/colorPrimary"/>
-    <Button
-        android:id="@+id/spinner_conf_but"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/commit"/>
+
 </LinearLayout>
 </layout>

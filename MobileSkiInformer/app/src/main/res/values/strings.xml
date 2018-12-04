@@ -23,5 +23,6 @@
     <string name="chooseVoi">Wybierz województwo:</string>
     <string name="chooseCounty">Wybierz powiat:</string>
     <string name="chooseBorough">Wybierz gminę:</string>
+    <string name="chooseLoc">Wybierz lokalizację</string>
 
 </resources>
