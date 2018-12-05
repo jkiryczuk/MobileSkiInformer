@@ -35,11 +35,11 @@ import jkiryczuk.pl.mobileskiinformer.model.ListOfFavourites;
 import jkiryczuk.pl.mobileskiinformer.model.NearbyResort;
 import jkiryczuk.pl.mobileskiinformer.model.Resource;
 import jkiryczuk.pl.mobileskiinformer.model.response.SkiResortResponse;
-import jkiryczuk.pl.mobileskiinformer.ui.mainactivity.MainActivity;
 import jkiryczuk.pl.mobileskiinformer.ui.nearbyscreen.adapter.NearbyAdapter;
+import jkiryczuk.pl.mobileskiinformer.ui.nearbyscreen.dialogpickcity.ChooseCityDialogFragment;
 import jkiryczuk.pl.mobileskiinformer.utils.StaticMethods;
 
-public class NearbyFragment extends Fragment {
+public class NearbyFragment extends Fragment implements Connector {
 
     private static final String TAG = NearbyFragment.class.getSimpleName();
     private final List<NearbyResort> resorts = new ArrayList<>();
@@ -54,6 +54,9 @@ public class NearbyFragment extends Fragment {
     private BottomSheetBehavior sheetBehavior;
     private LinearLayout layout;
     private FragmentNearbyBinding binding;
+    private Connector callback;
+    private boolean isFromApi = false;
+    private Location cityLocation;
 
     @Override
     public void onResume() {
@@ -74,9 +77,10 @@ public class NearbyFragment extends Fragment {
         } else {
             getLastLocation();
         }
+        callback = this;
         binding.fab.setOnClickListener(view -> {
-            NewTaskDialogFragment dialog = new NewTaskDialogFragment();
-            dialog.show(getFragmentManager(),"TAG");
+            ChooseCityDialogFragment dialog = new ChooseCityDialogFragment(callback);
+            dialog.show(getFragmentManager(), "TAG");
 
         });
         layout = binding.includeBS.bottomSheet;
@@ -106,6 +110,7 @@ public class NearbyFragment extends Fragment {
                     sheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
                 }
             }
+
             @Override
             public void onSlide(@NonNull View bottomSheet, float slideOffset) {
             }
@@ -124,8 +129,10 @@ public class NearbyFragment extends Fragment {
             adapter.clear();
             List<SkiResortResponse> resortsResponseList = resource.getData().getResortsList();
             viewModel.rewriteList(resortsResponseList, resorts);
-            if (mLastLocation != null) {
+            if (mLastLocation != null && !isFromApi) {
                 calculateNearest(resortsResponseList);
+            } else if(isFromApi){
+                calculateNearest(cityLocation,resortsResponseList);
             }
             StaticMethods.filterList(resorts, favsResort);
             adapter.setResorts(resorts);
@@ -140,10 +147,16 @@ public class NearbyFragment extends Fragment {
         }
     }
 
+    private void calculateNearest(Location location,List<SkiResortResponse> resortsResponseList) {
+        for (int i = 0; i < resortsResponseList.size(); i++) {
+            resorts.get(i).setDistance(viewModel.calculateDistance(location, resorts.get(i)) / 1000);
+        }
+    }
     private void setupSwipeLayoutListener() {
         swipeRefreshLayout.setOnRefreshListener(() -> {
             Log.e(TAG, "REFRESHING");
             adapter.clear();
+            isFromApi = false;
             if (mLastLocation != null) {
                 getLastLocation();
                 viewModel.initializeAllResortsData();
@@ -262,6 +275,16 @@ public class NearbyFragment extends Fragment {
         super.onHiddenChanged(hidden);
         viewModel.initializeAllResortsData();
 
+    }
+
+
+    @Override
+    public void callbackId(float id, float lon, float lat) {
+        viewModel.fetchClosest((long) id);
+        cityLocation = new Location("city");
+        cityLocation.setLatitude(lat);
+        cityLocation.setLongitude(lon);
+        isFromApi = true;
     }
 }
 

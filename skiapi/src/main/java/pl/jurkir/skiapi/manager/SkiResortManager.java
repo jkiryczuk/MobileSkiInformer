@@ -16,6 +16,7 @@ import java.util.List;
 @Service
 public class SkiResortManager implements SkiResortService {
 
+    public static final int DISTANCE_IN_KM = 20;
     @Autowired
     SkiResortRepository skiResortRepository;
 
@@ -70,7 +71,7 @@ public class SkiResortManager implements SkiResortService {
         List<SkiResort> resorts = skiResortRepository.findAll();
         List<SkiResort> closest = new ArrayList<>();
         for(SkiResort resort : resorts){
-            if(DistanceCalculator.distanceTo(city,resort) <= 20){
+            if(DistanceCalculator.distanceTo(city,resort) <= DISTANCE_IN_KM){
                 closest.add(resort);
             }
         }

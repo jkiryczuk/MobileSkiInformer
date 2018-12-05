@@ -34,7 +34,12 @@ public class NearbyViewModel extends ViewModel {
         repository.getResorts(resortsData);
     }
 
-    public void rewriteList(List<SkiResortResponse> resortsResponseList, List<NearbyResort> resorts){
+    public void fetchClosest(Long id) {
+        setRefreshing(true);
+        repository.getClosestToCity(id, resortsData);
+    }
+
+    public void rewriteList(List<SkiResortResponse> resortsResponseList, List<NearbyResort> resorts) {
         for (int i = 0; i < resortsResponseList.size(); i++) {
             resorts.add(new NearbyResort(resortsResponseList.get(i).getId(),
                     resortsResponseList.get(i).getName(),
@@ -63,7 +68,7 @@ public class NearbyViewModel extends ViewModel {
         isRefreshing.set(isVisible);
     }
 
-    public float calculateDistance(Location currentLocation,NearbyResort resort) {
+    public float calculateDistance(Location currentLocation, NearbyResort resort) {
         final Location destination = new Location("destination");
         destination.setLatitude(resort.getLatitude());
         destination.setLongitude(resort.getLongitude());

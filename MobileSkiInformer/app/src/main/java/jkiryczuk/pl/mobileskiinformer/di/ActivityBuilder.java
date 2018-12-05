@@ -8,6 +8,8 @@ import jkiryczuk.pl.mobileskiinformer.ui.favouritescreen.FavouritesFragment;
 import jkiryczuk.pl.mobileskiinformer.ui.favouritescreen.FavouritesModule;
 import jkiryczuk.pl.mobileskiinformer.ui.nearbyscreen.NearbyFragment;
 import jkiryczuk.pl.mobileskiinformer.ui.nearbyscreen.NearbyModule;
+import jkiryczuk.pl.mobileskiinformer.ui.nearbyscreen.dialogpickcity.ChooseCityDialogFragment;
+import jkiryczuk.pl.mobileskiinformer.ui.nearbyscreen.dialogpickcity.ChooseCityModule;
 import jkiryczuk.pl.mobileskiinformer.ui.searchscreen.SearchFragment;
 import jkiryczuk.pl.mobileskiinformer.ui.searchscreen.SearchModule;
 import jkiryczuk.pl.mobileskiinformer.ui.searchscreen.filterbottomsheet.BottomSheetFilterFragment;
@@ -30,4 +32,7 @@ abstract class ActivityBuilder {
 
     @ContributesAndroidInjector(modules = BottomSheetFilterModule.class )
     abstract BottomSheetFilterFragment bindBottomSheetFilterFragment();
+
+    @ContributesAndroidInjector(modules = ChooseCityModule.class)
+    abstract ChooseCityDialogFragment bindChooseCityDialogFragment();
 }

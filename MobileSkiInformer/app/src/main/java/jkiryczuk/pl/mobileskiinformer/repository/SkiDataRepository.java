@@ -10,9 +10,11 @@ import javax.inject.Inject;
 import jkiryczuk.pl.mobileskiinformer.api.manager.RetrofitClient;
 import jkiryczuk.pl.mobileskiinformer.api.service.SkiApiService;
 import jkiryczuk.pl.mobileskiinformer.model.NetworkError;
+import jkiryczuk.pl.mobileskiinformer.model.response.CityResponse;
 import jkiryczuk.pl.mobileskiinformer.model.response.CountyResponse;
 import jkiryczuk.pl.mobileskiinformer.model.response.VoivodeshipResponse;
 import jkiryczuk.pl.mobileskiinformer.model.response.lists.BoroughsList;
+import jkiryczuk.pl.mobileskiinformer.model.response.lists.CitiesList;
 import jkiryczuk.pl.mobileskiinformer.model.response.lists.CountiesList;
 import jkiryczuk.pl.mobileskiinformer.model.response.lists.ResortsList;
 import jkiryczuk.pl.mobileskiinformer.model.Resource;
@@ -53,20 +55,20 @@ public class SkiDataRepository implements DataRepository {
     @Override
     public void getBoroughsInCounties(Long countyId, MutableLiveData<Resource<BoroughsList>> liveData) {
         final Call<List<BoroughResponse>> call = service.getBoroughsByCounty(countyId);
-        commitBoroughsCall(call,liveData);
+        commitBoroughsCall(call, liveData);
     }
 
     @Override
     public void getVoivodeships(MutableLiveData<Resource<VoivodeshipsList>> liveData) {
         final Call<List<VoivodeshipResponse>> call = service.getVoivodeships();
-        commitVoivodeshipCall(call,liveData);
+        commitVoivodeshipCall(call, liveData);
     }
 
 
     @Override
     public void getCountiesInVoivodeShip(Long voivodeshipId, MutableLiveData<Resource<CountiesList>> liveData) {
         final Call<List<CountyResponse>> call = service.getCountiesByVoivodeship(voivodeshipId);
-        commitCountiesCall(call,liveData);
+        commitCountiesCall(call, liveData);
     }
 
     @Override
@@ -85,6 +87,46 @@ public class SkiDataRepository implements DataRepository {
     public void getResortsInVoivodeship(Long id, MutableLiveData<Resource<ResortsList>> liveData) {
         final Call<List<SkiResortResponse>> call = service.getResortsInVoivodeship(id);
         commitResortscall(call, liveData);
+    }
+
+    @Override
+    public void getCities(MutableLiveData<Resource<CitiesList>> liveData) {
+        final Call<List<CityResponse>> call = service.getCities();
+        commitCitiesCall(call, liveData);
+    }
+
+    @Override
+    public void getClosestToCity(Long id, MutableLiveData<Resource<ResortsList>> liveData) {
+        final Call<List<SkiResortResponse>> call = service.getClosestToCity(id);
+        commitResortscall(call,liveData);
+    }
+
+    private void commitCitiesCall(Call<List<CityResponse>> call, MutableLiveData<Resource<CitiesList>> liveData) {
+        call.enqueue(new Callback<List<CityResponse>>() {
+            @Override
+            public void onResponse(Call<List<CityResponse>> call, Response<List<CityResponse>> response) {
+                if (liveData == null) {
+                    return;
+                }
+
+                NetworkError networkError = null;
+                if (response.errorBody() != null) {
+                    networkError = ErrorUtil.parseError(response);
+                }
+                final CitiesList citiesList = new CitiesList();
+                if (response.isSuccessful()) {
+                    citiesList.setCities(response.body());
+                    liveData.setValue(Resource.success(citiesList));
+                } else {
+                    liveData.setValue(Resource.error(networkError.getMessage(), citiesList));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<CityResponse>> call, Throwable t) {
+                liveData.setValue(Resource.failure());
+            }
+        });
     }
 
     private void commitVoivodeshipCall(Call<List<VoivodeshipResponse>> call, MutableLiveData<Resource<VoivodeshipsList>> liveData) {

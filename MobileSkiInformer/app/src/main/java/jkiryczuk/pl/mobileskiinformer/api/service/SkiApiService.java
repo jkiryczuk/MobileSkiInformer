@@ -3,6 +3,7 @@ package jkiryczuk.pl.mobileskiinformer.api.service;
 import java.util.List;
 
 import jkiryczuk.pl.mobileskiinformer.model.response.BoroughResponse;
+import jkiryczuk.pl.mobileskiinformer.model.response.CityResponse;
 import jkiryczuk.pl.mobileskiinformer.model.response.CountyResponse;
 import jkiryczuk.pl.mobileskiinformer.model.response.SkiResortResponse;
 import jkiryczuk.pl.mobileskiinformer.model.response.VoivodeshipResponse;
@@ -36,5 +37,11 @@ public interface SkiApiService {
 
     @GET("/api/skiresort/by/voivodeship/{id}")
     Call<List<SkiResortResponse>> getResortsInVoivodeship(@Path("id") Long id);
+
+    @GET("/api/city/all")
+    Call<List<CityResponse>> getCities();
+
+    @GET("/api/skiresort/closest/{id}")
+    Call<List<SkiResortResponse>> getClosestToCity(@Path("id") Long id);
 
 }
