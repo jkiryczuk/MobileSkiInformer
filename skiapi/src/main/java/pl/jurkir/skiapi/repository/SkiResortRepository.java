@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 @Repository
 public interface SkiResortRepository extends JpaRepository<SkiResort, Long> {
-
+    //SQL
     @Query(value =
             "SELECT * FROM ski_resorts \n" +
             "INNER JOIN boroughs on ski_resorts.borough = boroughs.id\n" +
@@ -24,7 +24,7 @@ public interface SkiResortRepository extends JpaRepository<SkiResort, Long> {
                     "INNER JOIN counties on boroughs.county = counties.id\n" +
                     "WHERE counties.id = ?1", nativeQuery = true)
     ArrayList<SkiResort> findSkiResortByCounties(Long countyId);
-
+    //HQL
     @Query(value = "SELECT resort from SkiResort resort where resort.borough.id = ?1")
     ArrayList<SkiResort> findSkiResortByBorough(Long boroughId);
 

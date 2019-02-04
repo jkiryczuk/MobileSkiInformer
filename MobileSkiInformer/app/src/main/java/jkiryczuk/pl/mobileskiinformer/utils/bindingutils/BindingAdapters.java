@@ -73,4 +73,16 @@ public class BindingAdapters {
         }
 
     }
+
+    @BindingAdapter("typeOfLift")
+    public static void changeLift(ImageView imageView, String level){
+        if(level.equals("krzesełkowa")){
+            imageView.setImageResource(R.mipmap.krzes);
+        } else if(level.equals("orczykowa")){
+            imageView.setImageResource(R.mipmap.orczyk);
+        } else if(level.equals("linowa") || level.equals("gondolowa")
+                ||level.equals("linowo-terenowa")|| level.equals("koszykowa")){
+            imageView.setImageResource(R.mipmap.kolejka);
+        }
+    }
 }

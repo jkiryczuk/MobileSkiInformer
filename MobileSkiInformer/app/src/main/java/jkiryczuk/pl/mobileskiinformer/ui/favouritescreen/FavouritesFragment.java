@@ -49,6 +49,7 @@ public class FavouritesFragment extends Fragment {
         sheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
         return binding.getRoot();
     }
+
     private void setSheetBehaviourCallback() {
         sheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
             @Override

@@ -92,16 +92,16 @@ INSERT INTO ski_run_types(id,name) values (6,'bezpodporowa');
 INSERT INTO ski_run_types(id,name) values (7,'koszykowa');
 INSERT INTO ski_run_types(id,name) values (8,'ruchomy chodnik');
 
-INSERT INTO ski_resorts (id,name,address,city,phonenumber,website, map_adress ,latitude,longitude,borough, image) values (1,'SkiArena Szrenica','Turystyczna 25A','Szklarska Poręba','75 717 30 35','-ddd','https://skimap.org/data/1865/1/1301281553.jpg',50.833333333333,15.533333333333,1,'http://sudetylift.com.pl/zima/wp-content/uploads/sites/2/szrenica_02-938x703.jpg')
-INSERT INTO ski_resorts (id,name,address,city,phonenumber,website, map_adress ,latitude,longitude,borough, image) values (2,'Kompleks Narciarski Kopa w Karpaczu','Kopa','Karpacz','75 761 92 84','http://kopa.com.pl','mock',50.767083, 15.729083,2,'http://kopa.com.pl/public/ck/userfiles/images/kopa-karpacz.jpg')
-INSERT INTO ski_resorts (id,name,address,city,phonenumber,website, map_adress ,latitude,longitude,borough, image) values (3,'Stacja Narciarska Biały Jar w Karpaczu','Turystyczna 5','Karpacz','74 8660 431','https://www.winterpol.eu/karpacz','mock',50.772833, 15.738056,2,'https://d-pt.ppstatic.pl/kadry/k/r/1/dc/78/586defb26751e_o,size,1068x623,q,71,h,de600d.jpg')
-INSERT INTO ski_resorts (id,name,address,city,phonenumber,website, map_adress ,latitude,longitude,borough, image) values (4,'Ośrodek Narciarski Czarna Góra','Sienna 11','Stronie Śląskie','74 884 34 06','https://czarnagora.pl','https://upload.wikimedia.org/wikipedia/commons/2/2e/Mapa_o%C5%9Brodka.jpg',50.260134, 16.819212,3,'https://d-pt.ppstatic.pl/kadry/k/r/1/78/af/586e0a0e07c4d_o,size,1068x623,q,71,h,8b2927.jpg')
-INSERT INTO ski_resorts (id,name,address,city,phonenumber,website, map_adress ,latitude,longitude,borough, image) values (5,'Stacja Narciarska Kamienica','Kamienica 1a','Stronie Śląskie','74 814 32 85','http://www.snkamienica.pl','mock',50.251111, 16.886389,3,'http://www.snkamienica.pl/images/kamery/kamery.jpg')
-INSERT INTO ski_resorts (id,name,address,city,phonenumber,website, map_adress ,latitude,longitude,borough, image) values (6,'Stacja Narciarska Zieleniec','Zieleniec 72','Duszniki-Zdrój','74 866 04 39','https://www.zieleniec.pl','mock',50.339139, 16.383056,4,'http://bi.gazeta.pl/im/ca/8e/10/z17362122Q,Zieleniec.jpg')
-INSERT INTO ski_resorts (id,name,address,city,phonenumber,website, map_adress ,latitude,longitude,borough, image) values (7,'Ośrodek Ski & Sun Świeradów-Zdrój','Źródlana 7','Świeradów-Zdrój','75 615 20 20','http://skisun.pl','mock',50.910417, 15.319722	,5,'https://img.grouponcdn.com/deal/fu88n6cCbSJe2sjy7KVo/dT-700x420/v1/c700x420.jpg')
-INSERT INTO ski_resorts (id,name,address,city,phonenumber,website, map_adress ,latitude,longitude,borough, image) values (8,'Ośrodek Sportowo-Rekreacyjny Góra Dzikowiec w Boguszowie-Gorcach','Bema','Boguszów-Gorce','74 844 70 32','http://www.dzikowiec.info','mock',50.724389, 16.219833,6,'http://wyjade.pl/resources/miejsca/542/stok-dzikowiec.jpg')
-INSERT INTO ski_resorts (id,name,address,city,phonenumber,website, map_adress ,latitude,longitude,borough, image) values (9,'Narciarski Raj w Chrzanowie','Chrzanów Czwarty','Chrzanów Czwarty','600 656 465','http://www.rzetelski.com.pl','mock',50.779811, 22.625372,7,'https://i.ytimg.com/vi/L400Ov-Qg4Q/maxresdefault.jpg')
-INSERT INTO ski_resorts (id,name,address,city,phonenumber,website, map_adress ,latitude,longitude,borough, image) values (10,'Ośrodek Sportu i Rekreacji Góra Kamieńsk','Huby Ruszczyńskie','Kamieńsk','44 737 77 30','http://gorakamiensk.info','mock',51.230833, 19.436722,8,'https://static.polskieszlaki.pl/zdjecia/wycieczki/2016-07/osrodek-rekreacyjno-narciarski-gora-kamiensk-1-1466495327.jpg')
+INSERT INTO ski_resorts (id,name,address,city,phonenumber,website, map_adress ,latitude,longitude,borough, image) values (1,'SkiArena Szrenica','Turystyczna 25A','Szklarska Poręba','75 717 30 35','-ddd','https://skimap.org/data/1865/1/1301281553.jpg',50.833333333333,15.533333333333,1,'https://i.imgur.com/tnoNMPB.jpg')
+INSERT INTO ski_resorts (id,name,address,city,phonenumber,website, map_adress ,latitude,longitude,borough, image) values (2,'Kompleks Narciarski Kopa w Karpaczu','Kopa','Karpacz','75 761 92 84','http://kopa.com.pl','mock',50.767083, 15.729083,2,'https://i.imgur.com/dGZPh8c.jpg')
+INSERT INTO ski_resorts (id,name,address,city,phonenumber,website, map_adress ,latitude,longitude,borough, image) values (3,'Stacja Narciarska Biały Jar w Karpaczu','Turystyczna 5','Karpacz','74 8660 431','https://www.winterpol.eu/karpacz','mock',50.772833, 15.738056,2,'https://i.imgur.com/toNa1sZ.jpg')
+INSERT INTO ski_resorts (id,name,address,city,phonenumber,website, map_adress ,latitude,longitude,borough, image) values (4,'Ośrodek Narciarski Czarna Góra','Sienna 11','Stronie Śląskie','74 884 34 06','https://czarnagora.pl','https://upload.wikimedia.org/wikipedia/commons/2/2e/Mapa_o%C5%9Brodka.jpg',50.260134, 16.819212,3,'https://i.imgur.com/I88u9BB.jpg')
+INSERT INTO ski_resorts (id,name,address,city,phonenumber,website, map_adress ,latitude,longitude,borough, image) values (5,'Stacja Narciarska Kamienica','Kamienica 1a','Stronie Śląskie','74 814 32 85','http://www.snkamienica.pl','http:/ coś tam coś tam ',50.251111, 16.886389,3,'https://i.imgur.com/r7Z2KaO.jpg')
+INSERT INTO ski_resorts (id,name,address,city,phonenumber,website, map_adress ,latitude,longitude,borough, image) values (6,'Stacja Narciarska Zieleniec','Zieleniec 72','Duszniki-Zdrój','74 866 04 39','https://www.zieleniec.pl','mock',50.339139, 16.383056,4,'https://i.imgur.com/25IhtDI.jpg')
+INSERT INTO ski_resorts (id,name,address,city,phonenumber,website, map_adress ,latitude,longitude,borough, image) values (7,'Ośrodek Ski & Sun Świeradów-Zdrój','Źródlana 7','Świeradów-Zdrój','75 615 20 20','http://skisun.pl','dsadsadasdsa',50.910417, 15.319722	,5,'https://i.imgur.com/zaPlmgw.jpg')
+INSERT INTO ski_resorts (id,name,address,city,phonenumber,website, map_adress ,latitude,longitude,borough, image) values (8,'Ośrodek Sportowo-Rekreacyjny Góra Dzikowiec w Boguszowie-Gorcach','Bema','Boguszów-Gorce','74 844 70 32','http://www.dzikowiec.info','mock',50.724389, 16.219833,6,'https://i.imgur.com/tnoNMPB.jpg')
+INSERT INTO ski_resorts (id,name,address,city,phonenumber,website, map_adress ,latitude,longitude,borough, image) values (9,'Narciarski Raj w Chrzanowie','Chrzanów Czwarty','Chrzanów Czwarty','600 656 465','http://www.rzetelski.com.pl','mock',50.779811, 22.625372,7,'https://i.imgur.com/I88u9BB.jpg')
+INSERT INTO ski_resorts (id,name,address,city,phonenumber,website, map_adress ,latitude,longitude,borough, image) values (10,'Ośrodek Sportu i Rekreacji Góra Kamieńsk','Huby Ruszczyńskie','Kamieńsk','44 737 77 30','http://gorakamiensk.info','http://gorakamiensk.info/uploads/images/zima/MAPA_Gory_Kamiensk.jpg',51.230833, 19.436722,8,'https://i.imgur.com/zaPlmgw.jpg')
 
 
 INSERT INTO ski_runs (id,length,height_difference, resort) values (1,2750,429,1);
@@ -112,15 +112,37 @@ INSERT INTO ski_runs (id,length,height_difference, resort) values (5,636,118,1);
 INSERT INTO ski_runs (id,length,height_difference, resort) values (6,835,172,1);
 INSERT INTO ski_runs (id,length,height_difference, resort) values (7,800,221,8);
 INSERT INTO ski_runs (id,length,height_difference, resort) values (8,2500,443,7);
+INSERT INTO ski_runs (id,length,height_difference, resort) values (9,800,221,2);
+INSERT INTO ski_runs (id,length,height_difference, resort) values (10,2500,443,5);
+INSERT INTO ski_runs (id,length,height_difference, resort) values (11,800,221,2);
+INSERT INTO ski_runs (id,length,height_difference, resort) values (12,2500,443,5);
+INSERT INTO ski_runs (id,length,height_difference, resort) values (13,800,221,5);
+INSERT INTO ski_runs (id,length,height_difference, resort) values (14,2500,443,5);
+
+INSERT INTO ski_runs (id,length,height_difference, resort) values (15,2500,443,10);
+INSERT INTO ski_runs (id,length,height_difference, resort) values (16,2500,443,10);
+INSERT INTO ski_runs (id,length,height_difference, resort) values (17,2500,443,10);
+INSERT INTO ski_runs (id,length,height_difference, resort) values (18,2500,443,3);
+
 
 INSERT INTO ski_run_ski_run_type (ski_run_id, ski_run_type_id) values (1,2);
 INSERT INTO ski_run_ski_run_type (ski_run_id, ski_run_type_id) values (2,2);
-INSERT INTO ski_run_ski_run_type (ski_run_id, ski_run_type_id) values (3,6);
+INSERT INTO ski_run_ski_run_type (ski_run_id, ski_run_type_id) values (3,1);
 INSERT INTO ski_run_ski_run_type (ski_run_id, ski_run_type_id) values (4,1);
 INSERT INTO ski_run_ski_run_type (ski_run_id, ski_run_type_id) values (5,1);
 INSERT INTO ski_run_ski_run_type (ski_run_id, ski_run_type_id) values (6,1);
 INSERT INTO ski_run_ski_run_type (ski_run_id, ski_run_type_id) values (7,2);
 INSERT INTO ski_run_ski_run_type (ski_run_id, ski_run_type_id) values (8,4);
+INSERT INTO ski_run_ski_run_type (ski_run_id, ski_run_type_id) values (9,4);
+INSERT INTO ski_run_ski_run_type (ski_run_id, ski_run_type_id) values (10,1);
+INSERT INTO ski_run_ski_run_type (ski_run_id, ski_run_type_id) values (11,2);
+INSERT INTO ski_run_ski_run_type (ski_run_id, ski_run_type_id) values (12,2);
+INSERT INTO ski_run_ski_run_type (ski_run_id, ski_run_type_id) values (13,4);
+INSERT INTO ski_run_ski_run_type (ski_run_id, ski_run_type_id) values (14,4);
+INSERT INTO ski_run_ski_run_type (ski_run_id, ski_run_type_id) values (15,2);
+INSERT INTO ski_run_ski_run_type (ski_run_id, ski_run_type_id) values (16,1);
+INSERT INTO ski_run_ski_run_type (ski_run_id, ski_run_type_id) values (17,1);
+INSERT INTO ski_run_ski_run_type (ski_run_id, ski_run_type_id) values (18,1);
 
 
 INSERT INTO ski_run_ski_run_level (ski_run_id, ski_run_level_id) values (1,3);
@@ -131,6 +153,16 @@ INSERT INTO ski_run_ski_run_level (ski_run_id, ski_run_level_id) values (5,2);
 INSERT INTO ski_run_ski_run_level (ski_run_id, ski_run_level_id) values (6,2);
 INSERT INTO ski_run_ski_run_level (ski_run_id, ski_run_level_id) values (7,1);
 INSERT INTO ski_run_ski_run_level (ski_run_id, ski_run_level_id) values (8,1);
+INSERT INTO ski_run_ski_run_level (ski_run_id, ski_run_level_id) values (9,2);
+INSERT INTO ski_run_ski_run_level (ski_run_id, ski_run_level_id) values (10,1);
+INSERT INTO ski_run_ski_run_level (ski_run_id, ski_run_level_id) values (11,2);
+INSERT INTO ski_run_ski_run_level (ski_run_id, ski_run_level_id) values (12,2);
+INSERT INTO ski_run_ski_run_level (ski_run_id, ski_run_level_id) values (13,2);
+INSERT INTO ski_run_ski_run_level (ski_run_id, ski_run_level_id) values (14,2);
+INSERT INTO ski_run_ski_run_level (ski_run_id, ski_run_level_id) values (15,2);
+INSERT INTO ski_run_ski_run_level (ski_run_id, ski_run_level_id) values (16,2);
+INSERT INTO ski_run_ski_run_level (ski_run_id, ski_run_level_id) values (17,2);
+INSERT INTO ski_run_ski_run_level (ski_run_id, ski_run_level_id) values (18,2);
 
 
 insert into cities (id,name, lat,lng) values (1,'Szczyrk', 49.713985, 19.021715);

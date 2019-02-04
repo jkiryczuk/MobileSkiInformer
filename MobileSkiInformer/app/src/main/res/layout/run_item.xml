@@ -36,13 +36,41 @@
                         android:layout_weight="50"
                         android:text="Rodzaj: " />
 
-                    <TextView
-                        android:id="@+id/itemType"
+                    <ImageView
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_gravity="center"
                         android:layout_weight="50"
-                        android:text="@{item.skiRunType}" />
+                        android:layout_gravity="center"
+                        android:foregroundGravity="center"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitCenter"
+                        app:typeOfLift="@{item.skiRunType}"
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="10"
+                    android:weightSum="20">
+
+                    <TextView
+                        android:id="@+id/levelPrompt"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="10"
+                        android:text="Poziom: " />
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="10"
+                        android:layout_gravity="center"
+                        android:foregroundGravity="center"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitCenter"
+                        app:colorLevel="@{item.skiRunLevel}"
+                        />
 
                 </LinearLayout>
 
@@ -103,35 +131,6 @@
 
 
                 </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="10"
-                    android:weightSum="20">
-
-                    <ImageView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="10"
-                        android:layout_gravity="center"
-                        android:foregroundGravity="center"
-                        android:adjustViewBounds="true"
-                        android:scaleType="fitCenter"
-                        app:colorLevel="@{item.skiRunLevel}"
-                        />
-                    <ImageView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="10"
-                        android:layout_gravity="center"
-                        android:foregroundGravity="center"
-                        android:adjustViewBounds="true"
-                        android:scaleType="fitCenter"
-                        app:colorLevel="@{item.skiRunLevel}"
-                        />
-
-                </LinearLayout>
-
             </LinearLayout>
             <View
                 android:layout_marginLeft="30dp"
